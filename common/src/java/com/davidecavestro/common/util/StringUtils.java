@@ -96,4 +96,19 @@ public final class StringUtils {
 	public static void printStringArray (String[] s, PrintStream ps){
 		ArrayUtils.printArray (ps, s);
 	}
+	
+	/**
+	 * Ritorna una stringa che rappresenta i valorispecificati, separati da virgole.
+	 */
+	public static <T> String toCSV (final T[] values) {
+		final StringBuffer sb = new StringBuffer ();
+		if (values.length>0) {
+			sb.append (values[0]);
+			
+			for(int i=1; i<values.length; i++) {
+				sb.append (",").append (values[i]);
+			}
+		}
+		return sb.toString ();
+	}
 }
