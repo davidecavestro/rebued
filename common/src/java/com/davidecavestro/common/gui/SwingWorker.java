@@ -126,6 +126,7 @@ public abstract class SwingWorker {
         };
 
         Thread t = new Thread(doConstruct);
+		t.setDaemon (true);
         threadVar = new ThreadVar(t);
     }
 
