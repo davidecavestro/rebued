@@ -1,0 +1,14 @@
+URBE ChangeLog
+
+v0.9.3 (20060502)
+- Fissato l'highlighting nella ricerca dei valori nella tabella
+
+v0.9.2 (20060404)
+- Supporto al caricamento di properties con codifica UNICODE malformed
+
+v0.9.1 (20060308)
+- Introduzione pannello di gestione opzioni
+- Introduzione opzione di abilitazione modifica chiavi
+
+v0.9 (20060307)
+- Primo rilascio alfa

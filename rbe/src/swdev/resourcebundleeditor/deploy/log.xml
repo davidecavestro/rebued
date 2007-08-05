@@ -1,0 +1,1625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yguard version="1.1">
+<!--
+  yGuard Bytecode Obfuscator, v1.3.2, a Product of yWorks GmbH - http://www.yworks.com
+
+  Logfile created on Tue Jan 31 20:44:33 CET 2006
+
+  Jar file to be obfuscated:           urbe.jar
+  Target Jar file for obfuscated code: urbe.jar
+
+-->
+<!-- WARNING
+Methods are called which may break in obfuscated version at runtime.
+Please review your source code to ensure that the dangerous methods are not intended
+to act on classes which have been obfuscated.
+-->
+<!--
+     Your class com.davidecavestro.common.util.settings.SettingsSupport calls the java.lang.Class method java.lang.reflect.Field getDeclaredField(java.lang.String)
+-->
+<!--
+     Your class org.openide.awt.Mnemonics calls the java.lang.Class method java.lang.reflect.Method getMethod(java.lang.String, java.lang.Class[])
+-->
+<!--
+  Memory in use after class data structure built: 2781256 bytes
+  Total memory available                        : 5210112 bytes
+-->
+<expose>
+  <class name="com.davidecavestro.rbe.gui.search.SearchNavigator"/>
+  <method class="com.davidecavestro.rbe.gui.search.SearchNavigator" name="void nextMatch(com.davidecavestro.rbe.gui.search.Matcher)"/>
+  <method class="com.davidecavestro.rbe.gui.search.SearchNavigator" name="void previousMatch(com.davidecavestro.rbe.gui.search.Matcher)"/>
+  <class name="com.davidecavestro.rbe.gui.search.Matcher"/>
+  <method class="com.davidecavestro.rbe.gui.search.Matcher" name="boolean match(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.search.Matcher" name="void setPattern(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.search.Matcher" name="boolean getHighlight()"/>
+  <method class="com.davidecavestro.rbe.gui.search.Matcher" name="java.lang.String getPattern()"/>
+  <method class="com.davidecavestro.rbe.gui.search.Matcher" name="void setHighlight(boolean)"/>
+  <class name="com.davidecavestro.rbe.gui.search.SearchRenderer"/>
+  <field class="com.davidecavestro.rbe.gui.search.SearchRenderer" name="highlightRGB"/>
+  <field class="com.davidecavestro.rbe.gui.search.SearchRenderer" name="m"/>
+  <field class="com.davidecavestro.rbe.gui.search.SearchRenderer" name="delegate"/>
+  <method class="com.davidecavestro.rbe.gui.search.SearchRenderer" name="java.awt.Component getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)"/>
+  <class name="com.davidecavestro.rbe.gui.PresentationPanel"/>
+  <field class="com.davidecavestro.rbe.gui.PresentationPanel" name="appVersionLabel"/>
+  <field class="com.davidecavestro.rbe.gui.PresentationPanel" name="_appData"/>
+  <field class="com.davidecavestro.rbe.gui.PresentationPanel" name="appNameLabel"/>
+  <field class="com.davidecavestro.rbe.gui.PresentationPanel" name="jPanel1"/>
+  <field class="com.davidecavestro.rbe.gui.PresentationPanel" name="applicationImageLabel"/>
+  <method class="com.davidecavestro.rbe.gui.PresentationPanel" name="void setInfoText(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.PresentationPanel" name="void initComponents()"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog$6" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog$6" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog$5" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog$5" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog$4" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog$4" name="void keyTyped(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog$3" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog$3" name="void keyTyped(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog$2" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog$2" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog$1" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog$1" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.AddEntryDialog"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="_dialogNotifier"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="cancelButton"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="_locale"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="commentField"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="keyField"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="okButton"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="jLabel3"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="jButton3"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="jLabel2"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="valueField"/>
+  <field class="com.davidecavestro.rbe.gui.AddEntryDialog" name="jLabel1"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void removeDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void access$200(com.davidecavestro.rbe.gui.AddEntryDialog, java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void keyFieldActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void access$300(com.davidecavestro.rbe.gui.AddEntryDialog, java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void initComponents()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void addDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="java.lang.String getKeyText()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="java.util.Locale getLocale()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void show()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void close()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void check()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void access$100(com.davidecavestro.rbe.gui.AddEntryDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void valueFieldKeyTyped(java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void reset()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void cancelButtonActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void okButtonActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void access$400(com.davidecavestro.rbe.gui.AddEntryDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void makePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void access$500(com.davidecavestro.rbe.gui.AddEntryDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="boolean restorePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="java.lang.String getValueText()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void showForLocale(java.util.Locale)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="java.lang.String getCommentText()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void confirm()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void keyFieldKeyTyped(java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="java.lang.String getPersistenceKey()"/>
+  <method class="com.davidecavestro.rbe.gui.AddEntryDialog" name="void access$000(com.davidecavestro.rbe.gui.AddEntryDialog)"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$5" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$5" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$4" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$4" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$3" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$3" name="void keyTyped(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$2" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$2" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$BaseNameListener"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$BaseNameListener" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$BaseNameListener" name="void changedUpdate(javax.swing.event.DocumentEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$BaseNameListener" name="void insertUpdate(javax.swing.event.DocumentEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$BaseNameListener" name="void removeUpdate(javax.swing.event.DocumentEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$1" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$1" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="jButton3"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="_dialogNotifier"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="_baseName"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="baseNameField"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="cancelButton"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="_confirmed"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="okButton"/>
+  <field class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="jLabel1"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void removeDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void access$000(com.davidecavestro.rbe.gui.SpecifyBundleNameDialog)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void access$300(com.davidecavestro.rbe.gui.SpecifyBundleNameDialog, java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void initComponents()"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void cancel()"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void addDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="java.lang.String showForFile(java.io.File)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void baseNameFieldKeyTyped(java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void check()"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void cancelButtonActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void okButtonActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void reset(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void baseNameFieldPropertyChange(java.beans.PropertyChangeEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void access$500(com.davidecavestro.rbe.gui.SpecifyBundleNameDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void access$400(com.davidecavestro.rbe.gui.SpecifyBundleNameDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="java.lang.String getBaseNameText()"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void show(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void access$600(com.davidecavestro.rbe.gui.SpecifyBundleNameDialog)"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void confirm()"/>
+  <method class="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog" name="void access$200(com.davidecavestro.rbe.gui.SpecifyBundleNameDialog, java.beans.PropertyChangeEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.Splash$1" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.Splash$1" name="void windowClosing(java.awt.event.WindowEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.Splash"/>
+  <field class="com.davidecavestro.rbe.gui.Splash" name="_appData"/>
+  <field class="com.davidecavestro.rbe.gui.Splash" name="_presentationPanel"/>
+  <field class="com.davidecavestro.rbe.gui.Splash" name="mainPanel"/>
+  <field class="com.davidecavestro.rbe.gui.Splash" name="progressBar"/>
+  <method class="com.davidecavestro.rbe.gui.Splash" name="void initComponents()"/>
+  <method class="com.davidecavestro.rbe.gui.Splash" name="void access$000(com.davidecavestro.rbe.gui.Splash, java.awt.event.WindowEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.Splash" name="void showInfo(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.Splash" name="void exitForm(java.awt.event.WindowEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.About$3" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.About$3" name="val$keysFont"/>
+  <method class="com.davidecavestro.rbe.gui.About$3" name="java.awt.Component getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)"/>
+  <field class="com.davidecavestro.rbe.gui.About$2" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.About$2" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.About$SystemEnvTableModel"/>
+  <field class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="env"/>
+  <field class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="keys"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="java.lang.String getColumnName(int)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="java.lang.Class getColumnClass(int)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="int getColumnCount()"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="java.lang.Object getValueAt(int, int)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="void removeTableModelListener(javax.swing.event.TableModelListener)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="int getRowCount()"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="void addTableModelListener(javax.swing.event.TableModelListener)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="void setValueAt(java.lang.Object, int, int)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemEnvTableModel" name="boolean isCellEditable(int, int)"/>
+  <class name="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel"/>
+  <field class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="values"/>
+  <field class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="keys"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="java.lang.String getColumnName(int)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="java.lang.Class getColumnClass(int)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="int getColumnCount()"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="java.lang.Object getValueAt(int, int)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="void removeTableModelListener(javax.swing.event.TableModelListener)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="int getRowCount()"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="void addTableModelListener(javax.swing.event.TableModelListener)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="void setValueAt(java.lang.Object, int, int)"/>
+  <method class="com.davidecavestro.rbe.gui.About$SystemPropertiesTableModel" name="boolean isCellEditable(int, int)"/>
+  <field class="com.davidecavestro.rbe.gui.About$1" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.About$1" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.About"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="buttonGroup1"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jPanel5"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jPanel4"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jPanel3"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jPanel2"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jPanel1"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jToggleButton2"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jToggleButton1"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="systemEnvTableModel"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jScrollPane1"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jTabbedPane1"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="_context"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="presentationPanel"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="systemPropertiesTableModel"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel9"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel8"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jToolBar1"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel7"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel6"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel5"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel4"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="systemPropsTable"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel3"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel2"/>
+  <field class="com.davidecavestro.rbe.gui.About" name="jLabel1"/>
+  <method class="com.davidecavestro.rbe.gui.About" name="void jToggleButton2ActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.About" name="void access$100(com.davidecavestro.rbe.gui.About, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.About" name="void jToggleButton1ActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.About" name="void initComponents()"/>
+  <method class="com.davidecavestro.rbe.gui.About" name="void access$000(com.davidecavestro.rbe.gui.About, java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$29" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$29" name="val$f"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$29" name="void work()"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$28" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$28" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker$1" name="val$processing"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker$1" name="this$1"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker$1" name="void run()"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker" name="initialMessage"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker" name="java.lang.String access$4800(com.davidecavestro.rbe.gui.MainWindow$VisibleWorker)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker" name="java.lang.Object construct()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker" name="void work()"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$27" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$27" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$NewBundleAction"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$NewBundleAction" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$NewBundleAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$26" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$26" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$NewEntryDialogRequester"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$NewEntryDialogRequester" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$NewEntryDialogRequester" name="_locale"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$NewEntryDialogRequester" name="java.util.Locale getLocale()"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$25" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$25" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="forward"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="i"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="initValue"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="testValue"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="this$1"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="void execute()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="int counter()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="boolean test()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder$For" name="void init()"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$PatternFinder"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="matchcase"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="changeSupport"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="h"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="p"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="backward"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void navigate()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void removePropertyChangeListener(java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void setPattern(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void forceTableRepaint()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void nextMatch(com.davidecavestro.rbe.gui.search.Matcher)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void nextMatch(com.davidecavestro.rbe.gui.search.Matcher, boolean)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="boolean match(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void previousMatch(com.davidecavestro.rbe.gui.search.Matcher)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void addPropertyChangeListener(java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="java.lang.String getPattern()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="boolean getHighlight()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PatternFinder" name="void setHighlight(boolean)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$24" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$24" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$23" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$23" name="void keyPressed(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$22" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$22" name="void keyPressed(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$21" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$21" name="void focusGained(java.awt.event.FocusEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$20" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$20" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$PersistenceTreeAdapter"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PersistenceTreeAdapter" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$PersistenceTreeAdapter" name="_tree"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PersistenceTreeAdapter" name="void makePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PersistenceTreeAdapter" name="java.lang.String getPersistenceKey()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$PersistenceTreeAdapter" name="boolean restorePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="_keys"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="_locales"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="_resources"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="java.lang.String[] access$3800(com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="java.lang.Class getColumnClass(int)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="java.lang.String getColumnName(int)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="void setCommentAt(java.lang.Object, int, int)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="int getColumnCount()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="java.lang.Object getValueAt(int, int)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="java.lang.Object getCommentAt(int, int)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="void reindex()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="void resourceBundleChanged(com.davidecavestro.rbe.model.event.ResourceBundleModelEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="int getRowCount()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="void setValueAt(java.lang.Object, int, int)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel" name="boolean isCellEditable(int, int)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor$1" name="val$this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor$1" name="val$field"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor$1" name="this$1"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor$1" name="void keyPressed(java.awt.event.KeyEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor" name="_nullCalled"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor" name="boolean access$4002(com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor, boolean)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor" name="boolean stopCellEditing()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor" name="java.lang.Object getCellEditorValue()"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$9" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$9" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$8" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$8" name="void tableChanged(javax.swing.event.TableModelEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$19" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$19" name="void valueChanged(javax.swing.event.ListSelectionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$7" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$7" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$18" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$18" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$6" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$6" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$17" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$17" name="void mousePressed(java.awt.event.MouseEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$5" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$5" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$16" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$16" name="void keyPressed(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$4" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$4" name="val$currentCellPos"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$4" name="void changedUpdate(javax.swing.event.DocumentEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$4" name="void apply(javax.swing.event.DocumentEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$4" name="void insertUpdate(javax.swing.event.DocumentEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$4" name="void removeUpdate(javax.swing.event.DocumentEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$15" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$15" name="java.awt.Component getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$3" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$3" name="val$currentCellPos"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$3" name="void changedUpdate(javax.swing.event.DocumentEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$3" name="void apply(javax.swing.event.DocumentEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$3" name="void insertUpdate(javax.swing.event.DocumentEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$3" name="void removeUpdate(javax.swing.event.DocumentEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$14" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$14" name="void mousePressed(java.awt.event.MouseEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$2" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$2" name="val$currentCellPos"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$2" name="d"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$2" name="void valueChanged(javax.swing.event.ListSelectionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$13" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$13" name="java.awt.Component getTreeCellRendererComponent(javax.swing.JTree, java.lang.Object, boolean, boolean, boolean, int, boolean)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$1" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$1" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$12" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$12" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$11" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$11" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$10" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$10" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$SaveAsAction"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$SaveAsAction" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$SaveAsAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$SaveAction"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$SaveAction" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$SaveAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$SaveAction" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="_lc"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="_keys"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="_model"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="listenerList"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void valueForPathChanged(javax.swing.tree.TreePath, java.lang.Object)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void fireTreeStructureChanged(java.lang.Object, javax.swing.tree.TreePath)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void fireTreeNodesRemoved(java.lang.Object, java.lang.Object[], int[], java.lang.Object[])"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="int[] getIndexes(java.lang.String[], java.lang.String[])"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="int getChildCount(java.lang.Object)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void cacheKeys()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="java.lang.Object getChild(java.lang.Object, int)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void resourceBundleChanged(com.davidecavestro.rbe.model.event.ResourceBundleModelEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void fireTreeNodesInserted(java.lang.Object, java.lang.Object[], int[], java.lang.Object[])"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="int getIndexOfChild(java.lang.Object, java.lang.Object)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="java.lang.Object getRoot()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void fireTreeNodesChanged(java.lang.Object, java.lang.Object[], int[], java.lang.Object[])"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="boolean isLeaf(java.lang.Object)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void addTreeModelListener(javax.swing.event.TreeModelListener)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$LocalizationTreeModel" name="void removeTreeModelListener(javax.swing.event.TreeModelListener)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$OpenAction"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$OpenAction" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$OpenAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$32" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$32" name="void work()"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$31" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$31" name="void work()"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$30" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$30" name="val$recentPaths"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$30" name="val$ix"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$30" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$Processing"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$Processing" name="this$0"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow$Processing" name="p"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$Processing" name="boolean booleanValue()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow$Processing" name="void setValue(boolean)"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="commentTextAreaFiring"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="_actionNotifier"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="_context"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="tableBackgroundColor"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="valueTextAreaFiring"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="actions"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="valueTextArea"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="fileMenu"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="openMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="_wm"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="editorPanel"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="saveFileChooser"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="entryPopupMenu"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="addEntryMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="deleteLocaleMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="postInitialized"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="deleteEntryMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="menuBar"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="editMenu"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jPanel5"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="findMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jPanel4"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jPanel3"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="contextHelpMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jPanel2"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="modifiedLabel"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jSeparator7"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jSeparator6"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jSeparator5"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jSeparator4"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jSeparator3"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jLabel6"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jSeparator2"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jLabel5"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jSeparator1"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jLabel4"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jSplitPane1"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="commentTextAreaUpdating"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="keyBackgroundColor"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="redoMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="borderLayout1"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="deleteEntryButton"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="saveAsMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="_localizationTableModel"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="recentMenu"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="addLocaleMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="valueForegroundColor"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="statusPanel"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="localePopupMenu"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="_matcher"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="treeScrollPane"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="openFileChooser"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton9"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton8"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton7"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton6"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton5"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton4"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton3"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton2"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jButton1"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jScrollPane3"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jScrollPane2"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="jScrollPane1"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="undoMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="bundlePopupMenu"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="valuesTable"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="mainToolbar"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="helpMenu"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="cutMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="valueTextAreaUpdating"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="inactiveCaptionColor"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="bundleTree"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="keyForegroundColor"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="exitMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="commentTextArea"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="voidStringArray"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="copyMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="deleteMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="tableDataLabel"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="contentsMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="treePopupNode"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="mainPanel"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="tablePopupMenu"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="saveMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="aboutMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="newMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="pasteMenuItem"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="progressBar"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="keyTextField"/>
+  <field class="com.davidecavestro.rbe.gui.MainWindow" name="tree_table_splitPane"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void commentTextAreaFocusGained(java.awt.event.FocusEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JFileChooser access$4200(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void newMenuItemActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean restorePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void deleteLocaleMenuItemActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$1600(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$700(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$300(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void valueTextAreaKeyPressed(java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$3100(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void openMenuItemActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.awt.Color access$2300()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="com.davidecavestro.rbe.gui.MainWindow$PatternFinder access$100(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.lang.String access$1300(com.davidecavestro.rbe.gui.MainWindow, com.davidecavestro.rbe.model.DefaultResourceBundleModel)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$802(com.davidecavestro.rbe.gui.MainWindow, boolean)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void initComponents()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$3600(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean saveAs()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JLabel access$1500(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JProgressBar access$1400(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JTable access$200(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="com.davidecavestro.rbe.gui.WindowManager access$4300(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void updateRecentPathMenu()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$4500(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JTextArea access$1000(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$1700(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JFileChooser access$4400(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$3000(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.FocusEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$3200(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$2000(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.MouseEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void deleteEntryButtonActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$2700(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.awt.Color access$2200()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void commentTextAreaKeyPressed(java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$2600(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.MouseEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$3300(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JTextField access$600(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$702(com.davidecavestro.rbe.gui.MainWindow, boolean)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.lang.String[] access$3900()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$4100(com.davidecavestro.rbe.gui.MainWindow, java.io.File)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$3700(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void createActionTable(javax.swing.text.JTextComponent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void checkForDataLossOnExit()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void deleteLocale(java.util.Locale)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void jButton4ActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void show()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.awt.Color access$2500()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void addLocaleMenuItemActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JTextArea access$500(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$402(com.davidecavestro.rbe.gui.MainWindow, boolean)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void aboutMenuItemActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.lang.String getPersistenceKey()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$1800(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$400(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.Action getActionByName(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$800(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$4600(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean save()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void bundleTreeMousePressed(java.awt.event.MouseEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JButton access$2800(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.awt.Color access$2100()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void removeActionListener(java.awt.event.ActionListener)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void saveFileChooserActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void load(java.io.File)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$3400(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void openFile(java.io.File)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="com.davidecavestro.rbe.gui.MainWindow$LocalizationTableModel access$900(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.awt.event.ActionListener[] getActionListeners()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void deleteEntry(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void addActionListener(java.awt.event.ActionListener)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="javax.swing.JLabel access$1200(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$1900(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.lang.String prepareTitle(com.davidecavestro.rbe.model.DefaultResourceBundleModel)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="java.awt.Color access$2400()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void showAddEntryDialog()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void showAddEntryDialog(java.util.Locale)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean access$302(com.davidecavestro.rbe.gui.MainWindow, boolean)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void postInit()"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void smartTextAreaKeyPressed(java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="com.davidecavestro.rbe.ApplicationContext access$1100(com.davidecavestro.rbe.gui.MainWindow)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$2900(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void valuesTableMousePressed(java.awt.event.MouseEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void addEntryMenuItemActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void exitMenuItemActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void makePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="void access$3500(com.davidecavestro.rbe.gui.MainWindow, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.MainWindow" name="boolean checkForDataLoss()"/>
+  <class name="com.davidecavestro.rbe.gui.WindowManager"/>
+  <field class="com.davidecavestro.rbe.gui.WindowManager" name="_about"/>
+  <field class="com.davidecavestro.rbe.gui.WindowManager" name="_context"/>
+  <field class="com.davidecavestro.rbe.gui.WindowManager" name="_addLocaleDialog"/>
+  <field class="com.davidecavestro.rbe.gui.WindowManager" name="_specifyBundleNameDialog"/>
+  <field class="com.davidecavestro.rbe.gui.WindowManager" name="_addEntryDialog"/>
+  <field class="com.davidecavestro.rbe.gui.WindowManager" name="_mainWindow"/>
+  <field class="com.davidecavestro.rbe.gui.WindowManager" name="_splash"/>
+  <field class="com.davidecavestro.rbe.gui.WindowManager" name="_findDialog"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="void dialogChanged(com.davidecavestro.common.gui.dialog.DialogEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="com.davidecavestro.rbe.gui.AddLocaleDialog getAddLocaleDialog()"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="java.lang.String specifyBundleName(java.io.File)"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="com.davidecavestro.rbe.gui.FindDialog getFindDialog()"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="com.davidecavestro.rbe.gui.Splash getSplashWindow(com.davidecavestro.common.application.ApplicationData)"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="com.davidecavestro.rbe.gui.About getAbout()"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="com.davidecavestro.rbe.gui.AddEntryDialog getAddEntryDialog()"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog getSpecifyBundleNameDialog()"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="com.davidecavestro.rbe.ApplicationContext getApplicationContext()"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="void init(com.davidecavestro.rbe.ApplicationContext)"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="com.davidecavestro.rbe.gui.MainWindow getMainWindow()"/>
+  <method class="com.davidecavestro.rbe.gui.WindowManager" name="void showEntryDialog(java.util.Locale)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$9" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$9" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$8" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$8" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$7" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$7" name="void keyTyped(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$6" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$6" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$5" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$5" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$4" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$4" name="void itemStateChanged(java.awt.event.ItemEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$3" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$3" name="void windowClosing(java.awt.event.WindowEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$2" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$2" name="void keyPressed(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$11" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$11" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$10" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$10" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog$1" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog$1" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="jPanel1"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="closeButton"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="oldMatchCase"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="oldHighlight"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="changeSupport"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="oldBackward"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="highlightCheckBox"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="backwardCheckBox"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="oldPattern"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="patternComboBox"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="jCheckBox2"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="_findNextAction"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="matchCaseCheckBox"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="jButton3"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="jLabel1"/>
+  <field class="com.davidecavestro.rbe.gui.FindDialog" name="jButton1"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void patternChanged()"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void initComponents()"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$600(com.davidecavestro.rbe.gui.FindDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$000(com.davidecavestro.rbe.gui.FindDialog)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$900(com.davidecavestro.rbe.gui.FindDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void patternComboBoxKeyTyped(java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void exitForm(java.awt.event.WindowEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void close()"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void patternComboBoxActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void closeButtonActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$300(com.davidecavestro.rbe.gui.FindDialog, java.awt.event.ItemEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void patternComboBoxItemStateChanged(java.awt.event.ItemEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void addPropertyChangeListener(java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void highlightCheckBoxActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void highlightChanged()"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void backwardChanged()"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$400(com.davidecavestro.rbe.gui.FindDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$800(com.davidecavestro.rbe.gui.FindDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$200(com.davidecavestro.rbe.gui.FindDialog, java.awt.event.WindowEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void patternComboBoxPropertyChange(java.beans.PropertyChangeEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$700(com.davidecavestro.rbe.gui.FindDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void jButton1ActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void matchCaseChanged()"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$500(com.davidecavestro.rbe.gui.FindDialog, java.beans.PropertyChangeEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void backwardCheckBoxActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void access$100(com.davidecavestro.rbe.gui.FindDialog, java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.FindDialog" name="void removePropertyChangeListener(java.beans.PropertyChangeListener)"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$LanguageLocaleComparator"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$LanguageLocaleComparator" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$LanguageLocaleComparator" name="int compare(java.lang.Object, java.lang.Object)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$9" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$9" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$8" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$8" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$7" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$7" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$CountryLocaleComparator"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$CountryLocaleComparator" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$CountryLocaleComparator" name="int compare(java.lang.Object, java.lang.Object)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$6" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$6" name="java.awt.Component getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$5" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$5" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$4" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$4" name="java.awt.Component getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$13" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$13" name="void mouseClicked(java.awt.event.MouseEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$3" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$3" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$12" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$12" name="void valueChanged(javax.swing.event.ListSelectionEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$2" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$2" name="java.awt.Component getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$11" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$11" name="void keyTyped(java.awt.event.KeyEvent)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$10" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$10" name="java.awt.Component getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog$1" name="this$0"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog$1" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="_locale"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="predefinedLocales"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="languageCombo"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="countryCombo"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="variantCombo"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="cancelButton"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="PROP_CUSTOMIZED_LOCALE"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="jScrollPane1"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="actualLocaleText"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="jLabel6"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="jLabel5"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="helpButton"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="_dialogNotifier"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="jLabel4"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="jLabel3"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="jLabel2"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="predefinedList"/>
+  <field class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="okButton"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void removeDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void countryComboActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void initComponents()"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$800(com.davidecavestro.rbe.gui.AddLocaleDialog, java.awt.event.MouseEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void cancel()"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="java.util.Locale getSelectedLocale()"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void addDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$600(com.davidecavestro.rbe.gui.AddLocaleDialog, java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void comboEventHandler(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void show()"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void check()"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$700(com.davidecavestro.rbe.gui.AddLocaleDialog, javax.swing.event.ListSelectionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void reset()"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void cancelButtonActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void predefinedListKeyTyped(java.awt.event.KeyEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void predefinedListMouseClicked(java.awt.event.MouseEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void okButtonActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void makePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void predefinedListValueChanged(javax.swing.event.ListSelectionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void variantComboActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="boolean restorePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$500(com.davidecavestro.rbe.gui.AddLocaleDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$000(com.davidecavestro.rbe.gui.AddLocaleDialog)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$400(com.davidecavestro.rbe.gui.AddLocaleDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$300(com.davidecavestro.rbe.gui.AddLocaleDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$200(com.davidecavestro.rbe.gui.AddLocaleDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void access$100(com.davidecavestro.rbe.gui.AddLocaleDialog, java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void confirm()"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="void languageComboActionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.gui.AddLocaleDialog" name="java.lang.String getPersistenceKey()"/>
+  <class name="com.davidecavestro.rbe.model.undo.RBUndoManager$JvUndoAction"/>
+  <field class="com.davidecavestro.rbe.model.undo.RBUndoManager$JvUndoAction" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.undo.RBUndoManager$JvUndoAction" name="manager"/>
+  <method class="com.davidecavestro.rbe.model.undo.RBUndoManager$JvUndoAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.model.undo.RBUndoManager$JvRedoAction"/>
+  <field class="com.davidecavestro.rbe.model.undo.RBUndoManager$JvRedoAction" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.undo.RBUndoManager$JvRedoAction" name="manager"/>
+  <method class="com.davidecavestro.rbe.model.undo.RBUndoManager$JvRedoAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.model.undo.RBUndoManager"/>
+  <field class="com.davidecavestro.rbe.model.undo.RBUndoManager" name="undoAction"/>
+  <field class="com.davidecavestro.rbe.model.undo.RBUndoManager" name="redoAction"/>
+  <method class="com.davidecavestro.rbe.model.undo.RBUndoManager" name="void redoTo(javax.swing.undo.UndoableEdit)"/>
+  <method class="com.davidecavestro.rbe.model.undo.RBUndoManager" name="javax.swing.Action getRedoAction()"/>
+  <method class="com.davidecavestro.rbe.model.undo.RBUndoManager" name="javax.swing.Action getUndoAction()"/>
+  <method class="com.davidecavestro.rbe.model.undo.RBUndoManager" name="boolean addEdit(javax.swing.undo.UndoableEdit)"/>
+  <method class="com.davidecavestro.rbe.model.undo.RBUndoManager" name="void undoTo(javax.swing.undo.UndoableEdit)"/>
+  <method class="com.davidecavestro.rbe.model.undo.RBUndoManager" name="void synchronizeActions()"/>
+  <class name="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent"/>
+  <field class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="locale"/>
+  <field class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="ALL_KEYS"/>
+  <field class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="type"/>
+  <field class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="keys"/>
+  <field class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="DELETE"/>
+  <field class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="INSERT"/>
+  <field class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="UPDATE"/>
+  <field class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="ALL_LOCALES"/>
+  <method class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="int getType()"/>
+  <method class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="java.util.Locale getLocale()"/>
+  <method class="com.davidecavestro.rbe.model.event.ResourceBundleModelEvent" name="java.lang.String[] getKeys()"/>
+  <class name="com.davidecavestro.rbe.model.event.ResourceBundleModelListener"/>
+  <method class="com.davidecavestro.rbe.model.event.ResourceBundleModelListener" name="void resourceBundleChanged(com.davidecavestro.rbe.model.event.ResourceBundleModelEvent)"/>
+  <class name="com.davidecavestro.rbe.model.AbstractResourceBundleModel"/>
+  <field class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="listenerList"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void addResourceBundleModelListener(com.davidecavestro.rbe.model.event.ResourceBundleModelListener)"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="java.util.EventListener[] getListeners(java.lang.Class)"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void fireKeysDeleted(java.lang.String[])"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void setValue(java.util.Locale, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void fireKeysInserted(java.lang.String[])"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void fireResourceBundleDataChanged()"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void fireResourceBundleStructureChanged()"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void fireKeysUpdated(java.lang.String[])"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void fireResourceBundleValueUpdated(java.util.Locale, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void removeResourceBundleModelListener(com.davidecavestro.rbe.model.event.ResourceBundleModelListener)"/>
+  <method class="com.davidecavestro.rbe.model.AbstractResourceBundleModel" name="void fireResourceBundleModelChanged(com.davidecavestro.rbe.model.event.ResourceBundleModelEvent)"/>
+  <class name="com.davidecavestro.rbe.model.LocaleComparator"/>
+  <method class="com.davidecavestro.rbe.model.LocaleComparator" name="int compare(java.util.Locale, java.util.Locale)"/>
+  <method class="com.davidecavestro.rbe.model.LocaleComparator" name="int compare(java.lang.Object, java.lang.Object)"/>
+  <class name="com.davidecavestro.rbe.model.LocalizationProperties"/>
+  <field class="com.davidecavestro.rbe.model.LocalizationProperties" name="locale"/>
+  <field class="com.davidecavestro.rbe.model.LocalizationProperties" name="DEFAULT"/>
+  <field class="com.davidecavestro.rbe.model.LocalizationProperties" name="properties"/>
+  <method class="com.davidecavestro.rbe.model.LocalizationProperties" name="void store(java.io.File, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.LocalizationProperties" name="java.util.Locale getLocale()"/>
+  <method class="com.davidecavestro.rbe.model.LocalizationProperties" name="java.lang.String toString()"/>
+  <method class="com.davidecavestro.rbe.model.LocalizationProperties" name="com.davidecavestro.common.util.CommentedProperties getProperties()"/>
+  <method class="com.davidecavestro.rbe.model.LocalizationProperties" name="boolean isDefault()"/>
+  <class name="com.davidecavestro.rbe.model.ResourceBundleModel"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModel" name="java.lang.String getComment(java.util.Locale, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModel" name="void setValue(java.util.Locale, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModel" name="void setName(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModel" name="java.lang.String getName()"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModel" name="void setComment(java.util.Locale, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModel" name="java.util.Set getKeySet()"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModel" name="java.lang.String getValue(java.util.Locale, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModel" name="java.util.Locale[] getLocales()"/>
+  <class name="com.davidecavestro.rbe.model.ResourceBundleModelNotifier"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModelNotifier" name="void removeResourceBundleModelListener(com.davidecavestro.rbe.model.event.ResourceBundleModelListener)"/>
+  <method class="com.davidecavestro.rbe.model.ResourceBundleModelNotifier" name="void addResourceBundleModelListener(com.davidecavestro.rbe.model.event.ResourceBundleModelListener)"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="locale"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="oldValue"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="model"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="key"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="newValue"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="void undo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="void redo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$CommentEdit" name="java.lang.String getPresentationName()"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="locale"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="model"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="key"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="newComment"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="newValue"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="void undo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="void redo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyAddition" name="java.lang.String getPresentationName()"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleRemoval"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleRemoval" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleRemoval" name="model"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleRemoval" name="resource"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleRemoval" name="void undo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleRemoval" name="void redo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleRemoval" name="java.lang.String getPresentationName()"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleAddition"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleAddition" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleAddition" name="model"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleAddition" name="resource"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleAddition" name="void undo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleAddition" name="void redo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$LocaleAddition" name="java.lang.String getPresentationName()"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="locale"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="oldValue"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="model"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="key"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="newValue"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="void undo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="void redo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueEdit" name="java.lang.String getPresentationName()"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyChange"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyChange" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyChange" name="model"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyChange" name="oldKey"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyChange" name="newKey"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyChange" name="void undo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyChange" name="void redo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyChange" name="java.lang.String getPresentationName()"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$1" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$1" name="val$baseName"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$1" name="boolean accept(java.io.File, java.lang.String)"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyRemoval"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyRemoval" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyRemoval" name="values"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyRemoval" name="model"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyRemoval" name="key"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyRemoval" name="void undo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyRemoval" name="void redo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$KeyRemoval" name="java.lang.String getPresentationName()"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="this$0"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="locale"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="oldValue"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="model"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="key"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="newComment"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="newValue"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="oldComment"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="void undo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="void redo()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel$ValueCommentEdit" name="java.lang.String getPresentationName()"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_locales"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_resources"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="voidStringArray"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_resourceMap"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="voidLocaleArray"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_modifiedCounter"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="changeSupport"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_isModified"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_keys"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_localesSet"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_path"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="voidResourceArray"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_name"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_lastClone"/>
+  <field class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="_lastSource"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void internalSetValue(java.util.Locale, java.lang.String, java.lang.String, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void mapResources(com.davidecavestro.rbe.model.LocalizationProperties[])"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addKey(java.util.Locale, java.lang.String, java.lang.String, java.lang.String, boolean, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void firePropertyChange(java.lang.String, java.lang.Object, java.lang.Object)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="com.davidecavestro.rbe.model.LocalizationProperties getLocalizationProperties(java.util.Locale)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="boolean containsLocale(java.util.Locale)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.util.Locale getBundleLocale(java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void setComment(java.util.Locale, java.lang.String, java.lang.String, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void changeKey(java.lang.String, java.lang.String, boolean, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void popModified()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void setName(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void setPath(java.io.File)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.util.Locale[] getLocales()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void removeKey(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="com.davidecavestro.rbe.model.LocalizationProperties[] getResources()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void guardModified(boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addKey(java.util.Locale, java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void saveAs(java.io.File, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void load(java.io.File)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void cacheResources(com.davidecavestro.rbe.model.LocalizationProperties[])"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void removePropertyChangeListener(java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void setModified(boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void removeLocale(java.util.Locale)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.lang.String toString()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="com.davidecavestro.rbe.model.LocalizationProperties[] buildResources(java.io.File)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void removeKey(java.lang.String, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.util.Set getLocales(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void store(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void setValue(java.util.Locale, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void setValue(java.util.Locale, java.lang.String, java.lang.String, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void removeUndoableEditListener(javax.swing.event.UndoableEditListener)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void cacheKeys(com.davidecavestro.rbe.model.LocalizationProperties[])"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addUndoableEditListener(javax.swing.event.UndoableEditListener)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void removePropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void removeKey(java.lang.String, boolean, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void setComment(java.util.Locale, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addPropertyChangeListener(java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.util.Set getKeySet()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addKey(java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.lang.String getName()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void internalSetComment(java.util.Locale, java.lang.String, java.lang.String, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void firePropertyChange(java.lang.String, int, int)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void firePropertyChange(java.lang.String, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void setBundles(com.davidecavestro.rbe.model.LocalizationProperties[])"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.lang.String getComment(java.util.Locale, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addKey(java.lang.String, java.lang.String[], boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addLocale(com.davidecavestro.rbe.model.LocalizationProperties)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void changeKey(java.lang.String, java.lang.String, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.io.File getPath()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.lang.String getValue(java.util.Locale, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addKey(java.lang.String, java.lang.String[])"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void addLocale(com.davidecavestro.rbe.model.LocalizationProperties, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void resetModified()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void pushModified()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void removeLocale(java.util.Locale, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void changeKey(java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="boolean isModified()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.util.Set getLocaleKeys(java.util.Locale)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.beans.PropertyChangeListener[] getPropertyChangeListeners()"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="java.beans.PropertyChangeListener[] getPropertyChangeListeners(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.model.DefaultResourceBundleModel" name="void cacheLocales(com.davidecavestro.rbe.model.LocalizationProperties[])"/>
+  <class name="com.davidecavestro.rbe.help.HelpResources"/>
+  <field class="com.davidecavestro.rbe.help.HelpResources" name="VALUES_TABLE"/>
+  <field class="com.davidecavestro.rbe.help.HelpResources" name="EDITOR_PANEL"/>
+  <field class="com.davidecavestro.rbe.help.HelpResources" name="BUNDLE_TREE"/>
+  <field class="com.davidecavestro.rbe.help.HelpResources" name="MAIN_TOOLBAR"/>
+  <class name="com.davidecavestro.rbe.conf.UserSettings"/>
+  <field class="com.davidecavestro.rbe.conf.UserSettings" name="_userResources"/>
+  <field class="com.davidecavestro.rbe.conf.UserSettings" name="PROPERTIES_HEADER"/>
+  <method class="com.davidecavestro.rbe.conf.UserSettings" name="java.lang.String getPropertiesFileName()"/>
+  <method class="com.davidecavestro.rbe.conf.UserSettings" name="java.lang.String getPropertiesHeader()"/>
+  <class name="com.davidecavestro.rbe.conf.SystemResources"/>
+  <field class="com.davidecavestro.rbe.conf.SystemResources" name="_applicationData"/>
+  <field class="com.davidecavestro.rbe.conf.SystemResources" name="_env"/>
+  <method class="com.davidecavestro.rbe.conf.SystemResources" name="java.lang.String getSystemApplicationDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.SystemResources" name="java.lang.String getUserApplicationDataDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.SystemResources" name="java.lang.String getSystemApplicationSettingsPath()"/>
+  <method class="com.davidecavestro.rbe.conf.SystemResources" name="java.lang.String getUserApplicationRepositoryDirName()"/>
+  <method class="com.davidecavestro.rbe.conf.SystemResources" name="java.lang.String geSystemApplicationRepositoryDirName()"/>
+  <method class="com.davidecavestro.rbe.conf.SystemResources" name="java.lang.String getUserApplicationSettingsDirPath()"/>
+  <class name="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment"/>
+  <field class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="_props"/>
+  <field class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="APPLICATION_DIRECTORY"/>
+  <field class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="ARGUMENT_KEYVALUESEPARATOR"/>
+  <field class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="_args"/>
+  <field class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="APPLICATION_SETTINGS_DIRECTORY"/>
+  <field class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="_applicationDirPath"/>
+  <field class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="_applicationSettingsPath"/>
+  <method class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="java.util.Properties prepareProperties(java.lang.String[])"/>
+  <method class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="java.lang.String getApplicationDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.CommandLineApplicationEnvironment" name="java.lang.String getApplicationSettingsPath()"/>
+  <class name="com.davidecavestro.rbe.conf.UserResources"/>
+  <field class="com.davidecavestro.rbe.conf.UserResources" name="_applicationData"/>
+  <method class="com.davidecavestro.rbe.conf.UserResources" name="java.lang.String getUserApplicationDataDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.UserResources" name="java.lang.String getUserHomeDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.UserResources" name="java.lang.String getUserApplicationRepositoryDirName()"/>
+  <method class="com.davidecavestro.rbe.conf.UserResources" name="java.lang.String getUserAccount()"/>
+  <method class="com.davidecavestro.rbe.conf.UserResources" name="java.lang.String geSystemApplicationRepositoryDirName()"/>
+  <method class="com.davidecavestro.rbe.conf.UserResources" name="java.lang.String getUserApplicationDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.UserResources" name="java.lang.String getUserApplicationSettingsDirPath()"/>
+  <class name="com.davidecavestro.rbe.conf.ApplicationSettings"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationSettings" name="java.lang.String getLogDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationSettings" name="java.lang.Integer getPlainTextLogBufferSize()"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationSettings" name="java.lang.String getLookAndFeel()"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationSettings" name="java.lang.String getLastPath()"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationSettings" name="java.lang.String[] getRecentPaths()"/>
+  <class name="com.davidecavestro.rbe.conf.DefaultSettings"/>
+  <field class="com.davidecavestro.rbe.conf.DefaultSettings" name="_instance"/>
+  <field class="com.davidecavestro.rbe.conf.DefaultSettings" name="DEFAULT_PLAINTEXTLOG_BUFFERSIZE"/>
+  <field class="com.davidecavestro.rbe.conf.DefaultSettings" name="_env"/>
+  <field class="com.davidecavestro.rbe.conf.DefaultSettings" name="PROPERTIES_HEADER"/>
+  <method class="com.davidecavestro.rbe.conf.DefaultSettings" name="java.lang.String getLogDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.DefaultSettings" name="java.lang.Integer getPlainTextLogBufferSize()"/>
+  <method class="com.davidecavestro.rbe.conf.DefaultSettings" name="java.lang.String getLookAndFeel()"/>
+  <method class="com.davidecavestro.rbe.conf.DefaultSettings" name="java.lang.String getLastPath()"/>
+  <method class="com.davidecavestro.rbe.conf.DefaultSettings" name="java.lang.String[] getRecentPaths()"/>
+  <class name="com.davidecavestro.rbe.conf.AbstractSettings"/>
+  <field class="com.davidecavestro.rbe.conf.AbstractSettings" name="_properties"/>
+  <field class="com.davidecavestro.rbe.conf.AbstractSettings" name="_application"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.lang.Integer getPlainTextLogBufferSize()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.lang.String[] getRecentPaths()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.util.Properties getProperties()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="void setLookAndFeel(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="void setLastPath(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="void setRecentPaths(java.lang.String[])"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="void setPlainTextLogBufferSize(java.lang.Integer)"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.lang.String getLastPath()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.util.Properties loadProperties()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="void storeProperties()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.lang.String getLookAndFeel()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.lang.String getPropertiesHeader()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.lang.String getLogDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.AbstractSettings" name="java.lang.String getPropertiesFileName()"/>
+  <class name="com.davidecavestro.rbe.conf.ApplicationEnvironment"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationEnvironment" name="java.lang.String getApplicationDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationEnvironment" name="java.lang.String getApplicationSettingsPath()"/>
+  <class name="com.davidecavestro.rbe.conf.ResourceNames"/>
+  <field class="com.davidecavestro.rbe.conf.ResourceNames" name="USER_ACCOUNT"/>
+  <field class="com.davidecavestro.rbe.conf.ResourceNames" name="SYSTEM_SETTINGSFILE_NAME"/>
+  <field class="com.davidecavestro.rbe.conf.ResourceNames" name="USER_DATADIR_NAME"/>
+  <field class="com.davidecavestro.rbe.conf.ResourceNames" name="USER_SETTINGSDIR_NAME"/>
+  <field class="com.davidecavestro.rbe.conf.ResourceNames" name="USER_WORKINGDIR_PATH"/>
+  <field class="com.davidecavestro.rbe.conf.ResourceNames" name="USER_SETTINGSFILE_NAME"/>
+  <field class="com.davidecavestro.rbe.conf.ResourceNames" name="USER_HOMEDIR_PATH"/>
+  <class name="com.davidecavestro.rbe.conf.CustomizableSettings"/>
+  <field class="com.davidecavestro.rbe.conf.CustomizableSettings" name="PROPNAME_LOOKANDFEEL"/>
+  <field class="com.davidecavestro.rbe.conf.CustomizableSettings" name="PROPNAME_LASTPATH"/>
+  <field class="com.davidecavestro.rbe.conf.CustomizableSettings" name="PROPNAME_RECENTPATHS"/>
+  <field class="com.davidecavestro.rbe.conf.CustomizableSettings" name="PLAINTEXTLOG_BUFFERSIZE"/>
+  <field class="com.davidecavestro.rbe.conf.CustomizableSettings" name="PROPNAME_LOGDIRPATH"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="java.util.Properties getProperties()"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="void setLookAndFeel(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="void setLastPath(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="void setRecentPaths(java.lang.String[])"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="void setPlainTextLogBufferSize(java.lang.Integer)"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="java.util.Properties loadProperties()"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="void storeProperties()"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="java.lang.String getPropertiesHeader()"/>
+  <method class="com.davidecavestro.rbe.conf.CustomizableSettings" name="java.lang.String getPropertiesFileName()"/>
+  <class name="com.davidecavestro.rbe.conf.ApplicationOptions"/>
+  <field class="com.davidecavestro.rbe.conf.ApplicationOptions" name="_successor"/>
+  <field class="com.davidecavestro.rbe.conf.ApplicationOptions" name="_settings"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationOptions" name="java.lang.String getLogDirPath()"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationOptions" name="java.lang.String getLookAndFeel()"/>
+  <method class="com.davidecavestro.rbe.conf.ApplicationOptions" name="int getPlainTextLogBufferSize()"/>
+  <class name="com.davidecavestro.rbe.conf.SystemSettings"/>
+  <field class="com.davidecavestro.rbe.conf.SystemSettings" name="_systemResources"/>
+  <field class="com.davidecavestro.rbe.conf.SystemSettings" name="PROPERTIES_HEADER"/>
+  <method class="com.davidecavestro.rbe.conf.SystemSettings" name="java.lang.String getPropertiesFileName()"/>
+  <method class="com.davidecavestro.rbe.conf.SystemSettings" name="java.lang.String getPropertiesHeader()"/>
+  <method class="com.davidecavestro.rbe.conf.SystemSettings" name="java.lang.String[] getRecentPaths()"/>
+  <class name="com.davidecavestro.rbe.actions.FindAction"/>
+  <field class="com.davidecavestro.rbe.actions.FindAction" name="_context"/>
+  <method class="com.davidecavestro.rbe.actions.FindAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.actions.FindAction" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <class name="com.davidecavestro.rbe.actions.CutAction"/>
+  <method class="com.davidecavestro.rbe.actions.CutAction" name="void caretUpdate(javax.swing.event.CaretEvent)"/>
+  <method class="com.davidecavestro.rbe.actions.CutAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.actions.ActionManager"/>
+  <field class="com.davidecavestro.rbe.actions.ActionManager" name="_findNextAction"/>
+  <method class="com.davidecavestro.rbe.actions.ActionManager" name="com.davidecavestro.rbe.actions.FindNextAction getFindNextAction()"/>
+  <class name="com.davidecavestro.rbe.actions.FindNextAction"/>
+  <field class="com.davidecavestro.rbe.actions.FindNextAction" name="_actionNotifier"/>
+  <method class="com.davidecavestro.rbe.actions.FindNextAction" name="void removeActionListener(java.awt.event.ActionListener)"/>
+  <method class="com.davidecavestro.rbe.actions.FindNextAction" name="void addActionListener(java.awt.event.ActionListener)"/>
+  <method class="com.davidecavestro.rbe.actions.FindNextAction" name="java.awt.event.ActionListener[] getActionListeners()"/>
+  <method class="com.davidecavestro.rbe.actions.FindNextAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <method class="com.davidecavestro.rbe.actions.FindNextAction" name="void propertyChange(java.beans.PropertyChangeEvent)"/>
+  <class name="com.davidecavestro.rbe.actions.NewBundleAction"/>
+  <field class="com.davidecavestro.rbe.actions.NewBundleAction" name="_context"/>
+  <method class="com.davidecavestro.rbe.actions.NewBundleAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.actions.PasteAction"/>
+  <method class="com.davidecavestro.rbe.actions.PasteAction" name="void caretUpdate(javax.swing.event.CaretEvent)"/>
+  <method class="com.davidecavestro.rbe.actions.PasteAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.actions.CopyAction"/>
+  <method class="com.davidecavestro.rbe.actions.CopyAction" name="void caretUpdate(javax.swing.event.CaretEvent)"/>
+  <method class="com.davidecavestro.rbe.actions.CopyAction" name="void actionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.rbe.Launcher"/>
+  <method class="com.davidecavestro.rbe.Launcher" name="void main(java.lang.String[])"/>
+  <class name="com.davidecavestro.rbe.ApplicationContext"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_actionManager"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_uiPersister"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="changeSupport"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_userSettings"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_applicationData"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_resourceBundleModel"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_env"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_undoManager"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_helpManager"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_windowManager"/>
+  <field class="com.davidecavestro.rbe.ApplicationContext" name="_isProcessing"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="java.beans.PropertyChangeListener[] getPropertyChangeListeners(java.lang.String)"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="void removePropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="void firePropertyChange(java.lang.String, boolean, boolean)"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="java.beans.PropertyChangeListener[] getPropertyChangeListeners()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="void firePropertyChange(java.lang.String, int, int)"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.rbe.gui.WindowManager getWindowManager()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.rbe.conf.UserSettings getUserSettings()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.rbe.model.DefaultResourceBundleModel getModel()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="void addPropertyChangeListener(java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.rbe.conf.ApplicationEnvironment getApplicationEnvironment()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.rbe.actions.ActionManager getActionManager()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.common.gui.persistence.UIPersister getUIPersisteer()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="boolean isProcessing()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.common.help.HelpManager getHelpManager()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.common.application.ApplicationData getApplicationData()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="void addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="void setProcessing(boolean)"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="com.davidecavestro.rbe.model.undo.RBUndoManager getUndoManager()"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="void firePropertyChange(java.lang.String, java.lang.Object, java.lang.Object)"/>
+  <method class="com.davidecavestro.rbe.ApplicationContext" name="void removePropertyChangeListener(java.beans.PropertyChangeListener)"/>
+  <field class="com.davidecavestro.rbe.Application$1" name="this$0"/>
+  <field class="com.davidecavestro.rbe.Application$1" name="val$wm"/>
+  <method class="com.davidecavestro.rbe.Application$1" name="void windowClosing(java.awt.event.WindowEvent)"/>
+  <class name="com.davidecavestro.rbe.Application$UserUIStorage"/>
+  <field class="com.davidecavestro.rbe.Application$UserUIStorage" name="this$0"/>
+  <field class="com.davidecavestro.rbe.Application$UserUIStorage" name="_userSettings"/>
+  <method class="com.davidecavestro.rbe.Application$UserUIStorage" name="java.util.Properties getRegistry()"/>
+  <class name="com.davidecavestro.rbe.Application"/>
+  <field class="com.davidecavestro.rbe.Application" name="_context"/>
+  <field class="com.davidecavestro.rbe.Application" name="_env"/>
+  <field class="com.davidecavestro.rbe.Application" name="_logger"/>
+  <method class="com.davidecavestro.rbe.Application" name="void beforeExit()"/>
+  <method class="com.davidecavestro.rbe.Application" name="void start()"/>
+  <method class="com.davidecavestro.rbe.Application" name="void exit()"/>
+  <method class="com.davidecavestro.rbe.Application" name="com.davidecavestro.common.log.Logger getLogger()"/>
+  <class name="com.davidecavestro.common.util.file.FileUtils"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="jpeg"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="pdf"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="tif"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="csv"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="gif"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="xml"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="html"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="htm"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="xls"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="png"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="jpg"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="properties"/>
+  <field class="com.davidecavestro.common.util.file.FileUtils" name="tiff"/>
+  <method class="com.davidecavestro.common.util.file.FileUtils" name="void makeFilePath(java.io.File)"/>
+  <method class="com.davidecavestro.common.util.file.FileUtils" name="java.lang.String getExtension(java.io.File, boolean)"/>
+  <class name="com.davidecavestro.common.util.file.CustomFileFilter"/>
+  <field class="com.davidecavestro.common.util.file.CustomFileFilter" name="_descriptions"/>
+  <field class="com.davidecavestro.common.util.file.CustomFileFilter" name="_acceptedExtensions"/>
+  <method class="com.davidecavestro.common.util.file.CustomFileFilter" name="boolean accept(java.io.File)"/>
+  <method class="com.davidecavestro.common.util.file.CustomFileFilter" name="java.lang.String getDescription()"/>
+  <class name="com.davidecavestro.common.util.settings.SettingsSupport"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="java.awt.Color getColorProperty(java.util.Properties, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="java.lang.String[] getPaths(java.util.Properties, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="java.util.Calendar getCalendarProperty(java.util.Properties, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="void setColorProperty(java.util.Properties, java.lang.String, java.awt.Color)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="java.lang.Double getDoubleProperty(java.util.Properties, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="void setRectangle(java.util.Properties, java.awt.Rectangle, java.lang.String, java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="void setDoubleProperty(java.util.Properties, java.lang.String, java.lang.Double)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="void setIntegerProperty(java.util.Properties, java.lang.String, java.lang.Integer)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="java.lang.Integer getIntegerProperty(java.util.Properties, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="void setPaths(java.util.Properties, java.lang.String, java.lang.String[], java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="java.lang.Boolean getBooleanProperty(java.util.Properties, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="void setBooleanProperty(java.util.Properties, java.lang.String, java.lang.Boolean)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="void setStringProperty(java.util.Properties, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="java.awt.Rectangle getRectangle(java.util.Properties, java.lang.String, java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.settings.SettingsSupport" name="java.lang.String getStringProperty(java.util.Properties, java.lang.String)"/>
+  <class name="com.davidecavestro.common.util.action.ActionNotifier"/>
+  <method class="com.davidecavestro.common.util.action.ActionNotifier" name="void removeActionListener(java.awt.event.ActionListener)"/>
+  <method class="com.davidecavestro.common.util.action.ActionNotifier" name="void addActionListener(java.awt.event.ActionListener)"/>
+  <method class="com.davidecavestro.common.util.action.ActionNotifier" name="java.awt.event.ActionListener[] getActionListeners()"/>
+  <class name="com.davidecavestro.common.util.action.ActionNotifierImpl"/>
+  <field class="com.davidecavestro.common.util.action.ActionNotifierImpl" name="listenerList"/>
+  <method class="com.davidecavestro.common.util.action.ActionNotifierImpl" name="void removeActionListener(java.awt.event.ActionListener)"/>
+  <method class="com.davidecavestro.common.util.action.ActionNotifierImpl" name="void addActionListener(java.awt.event.ActionListener)"/>
+  <method class="com.davidecavestro.common.util.action.ActionNotifierImpl" name="java.awt.event.ActionListener[] getActionListeners()"/>
+  <method class="com.davidecavestro.common.util.action.ActionNotifierImpl" name="void fireActionPerformed(java.awt.event.ActionEvent)"/>
+  <class name="com.davidecavestro.common.util.BooleanUtils"/>
+  <method class="com.davidecavestro.common.util.BooleanUtils" name="java.lang.Boolean getBoolean(boolean)"/>
+  <class name="com.davidecavestro.common.util.IllegalOperationException"/>
+  <class name="com.davidecavestro.common.util.FileUtils"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="jpeg"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="pdf"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="tif"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="csv"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="gif"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="xml"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="html"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="htm"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="xls"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="png"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="jpg"/>
+  <field class="com.davidecavestro.common.util.FileUtils" name="tiff"/>
+  <method class="com.davidecavestro.common.util.FileUtils" name="void makeFilePath(java.io.File)"/>
+  <method class="com.davidecavestro.common.util.FileUtils" name="java.lang.String getExtension(java.io.File, boolean)"/>
+  <class name="com.davidecavestro.common.util.CommentedProperties"/>
+  <field class="com.davidecavestro.common.util.CommentedProperties" name="commentsMap"/>
+  <field class="com.davidecavestro.common.util.CommentedProperties" name="hexDigit"/>
+  <field class="com.davidecavestro.common.util.CommentedProperties" name="strictKeyValueSeparators"/>
+  <field class="com.davidecavestro.common.util.CommentedProperties" name="whiteSpaceChars"/>
+  <field class="com.davidecavestro.common.util.CommentedProperties" name="keyValueSeparators"/>
+  <field class="com.davidecavestro.common.util.CommentedProperties" name="defaults"/>
+  <field class="com.davidecavestro.common.util.CommentedProperties" name="specialSaveChars"/>
+  <field class="com.davidecavestro.common.util.CommentedProperties" name="serialVersionUID"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="java.lang.String loadConvert(java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="void list(java.io.PrintStream)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="java.lang.String getProperty(java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="java.lang.String getComment(java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="char toHex(int)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="void store(java.io.OutputStream, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="void save(java.io.OutputStream, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="java.lang.Object setProperty(java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="boolean continueLine(java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="void writeln(java.io.BufferedWriter, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="void list(java.io.PrintWriter)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="java.lang.String saveConvert(java.lang.String, boolean)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="void load(java.io.InputStream)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="java.lang.Object setProperty(java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="void enumerate(java.util.Hashtable)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="void setComment(java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="java.lang.String getProperty(java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CommentedProperties" name="java.util.Enumeration propertyNames()"/>
+  <class name="com.davidecavestro.common.util.NestedRuntimeException"/>
+  <field class="com.davidecavestro.common.util.NestedRuntimeException" name="rootCause"/>
+  <method class="com.davidecavestro.common.util.NestedRuntimeException" name="java.lang.String toString()"/>
+  <method class="com.davidecavestro.common.util.NestedRuntimeException" name="java.lang.Throwable getRootCause()"/>
+  <class name="com.davidecavestro.common.util.CalendarUtils"/>
+  <field class="com.davidecavestro.common.util.CalendarUtils" name="dateFormat"/>
+  <field class="com.davidecavestro.common.util.CalendarUtils" name="FILENAME_TIMESTAMP_FORMAT"/>
+  <field class="com.davidecavestro.common.util.CalendarUtils" name="TIMESTAMP_FORMAT"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.lang.String getTimestamp(java.util.Date, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.lang.String getTimestamp(java.util.Date)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="void resetTime(java.util.Date)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.lang.String getTS(java.util.Date, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.util.Calendar getCalendar(java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.util.Date timestamp2Date(java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.util.Calendar timestamp2Calendar(java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="boolean equals(java.util.Date, java.util.Date)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.util.Calendar timestamp2Calendar(java.lang.String, java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.util.Date resetTimeCopy(java.util.Date)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.util.Date timestamp2Date(java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.CalendarUtils" name="java.lang.String toTSString(java.util.Date)"/>
+  <class name="com.davidecavestro.common.util.StringUtils"/>
+  <field class="com.davidecavestro.common.util.StringUtils" name="voidStringArray"/>
+  <method class="com.davidecavestro.common.util.StringUtils" name="void printStringArray(java.lang.String[], java.io.PrintStream)"/>
+  <method class="com.davidecavestro.common.util.StringUtils" name="java.lang.String[] toStringArray(java.lang.String)"/>
+  <method class="com.davidecavestro.common.util.StringUtils" name="boolean contains(java.lang.Object[], java.lang.Object)"/>
+  <class name="com.davidecavestro.common.util.ExceptionUtils"/>
+  <method class="com.davidecavestro.common.util.ExceptionUtils" name="java.lang.StringBuffer getStackTrace(java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.util.ExceptionUtils" name="java.lang.StringBuffer getStackTrace(com.davidecavestro.common.util.NestedRuntimeException)"/>
+  <class name="com.davidecavestro.common.gui.dialog.DialogEvent"/>
+  <field class="com.davidecavestro.common.gui.dialog.DialogEvent" name="type"/>
+  <field class="com.davidecavestro.common.gui.dialog.DialogEvent" name="value"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogEvent" name="int getType()"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogEvent" name="java.lang.Object getValue()"/>
+  <class name="com.davidecavestro.common.gui.dialog.DialogNotifierImpl"/>
+  <field class="com.davidecavestro.common.gui.dialog.DialogNotifierImpl" name="listenerList"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogNotifierImpl" name="com.davidecavestro.common.gui.dialog.DialogListener[] getDialogListeners()"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogNotifierImpl" name="void removeDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogNotifierImpl" name="void fireDialogPerformed(com.davidecavestro.common.gui.dialog.DialogEvent)"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogNotifierImpl" name="void addDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <class name="com.davidecavestro.common.gui.dialog.DialogListener"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogListener" name="void dialogChanged(com.davidecavestro.common.gui.dialog.DialogEvent)"/>
+  <class name="com.davidecavestro.common.gui.dialog.DialogNotifier"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogNotifier" name="void removeDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <method class="com.davidecavestro.common.gui.dialog.DialogNotifier" name="void addDialogListener(com.davidecavestro.common.gui.dialog.DialogListener)"/>
+  <class name="com.davidecavestro.common.gui.table.TableMap"/>
+  <field class="com.davidecavestro.common.gui.table.TableMap" name="model"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="java.lang.String getColumnName(int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="java.lang.Class getColumnClass(int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="void setModel(javax.swing.table.TableModel)"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="int getColumnCount()"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="java.lang.Object getValueAt(int, int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="javax.swing.table.TableModel getModel()"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="void tableChanged(javax.swing.event.TableModelEvent)"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="int getRowCount()"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="void setValueAt(java.lang.Object, int, int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableMap" name="boolean isCellEditable(int, int)"/>
+  <field class="com.davidecavestro.common.gui.table.TableSorter$1" name="this$0"/>
+  <field class="com.davidecavestro.common.gui.table.TableSorter$1" name="val$sorter"/>
+  <field class="com.davidecavestro.common.gui.table.TableSorter$1" name="val$tableView"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter$1" name="void mouseClicked(java.awt.event.MouseEvent)"/>
+  <class name="com.davidecavestro.common.gui.table.TableSorter"/>
+  <field class="com.davidecavestro.common.gui.table.TableSorter" name="indexes"/>
+  <field class="com.davidecavestro.common.gui.table.TableSorter" name="compares"/>
+  <field class="com.davidecavestro.common.gui.table.TableSorter" name="sortingColumns"/>
+  <field class="com.davidecavestro.common.gui.table.TableSorter" name="ascending"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void setModel(javax.swing.table.TableModel)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void checkModel()"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void shuttlesort(int[], int[], int, int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="int compare(int, int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="java.lang.Object getValueAt(int, int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="int compareRowsByColumn(int, int, int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void tableChanged(javax.swing.event.TableModelEvent)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void sort(java.lang.Object)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void n2sort()"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void sortByColumn(int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void swap(int, int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void setValueAt(java.lang.Object, int, int)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void addMouseListenerToHeaderInTable(javax.swing.JTable)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void sortByColumn(int, boolean)"/>
+  <method class="com.davidecavestro.common.gui.table.TableSorter" name="void reallocateIndexes()"/>
+  <class name="com.davidecavestro.common.gui.persistence.UIPersister"/>
+  <field class="com.davidecavestro.common.gui.persistence.UIPersister" name="_register"/>
+  <field class="com.davidecavestro.common.gui.persistence.UIPersister" name="_uiStorage"/>
+  <method class="com.davidecavestro.common.gui.persistence.UIPersister" name="boolean register(com.davidecavestro.common.gui.persistence.PersistentComponent)"/>
+  <method class="com.davidecavestro.common.gui.persistence.UIPersister" name="void makePersistentAll()"/>
+  <method class="com.davidecavestro.common.gui.persistence.UIPersister" name="void unregister(com.davidecavestro.common.gui.persistence.PersistentComponent)"/>
+  <method class="com.davidecavestro.common.gui.persistence.UIPersister" name="boolean register(com.davidecavestro.common.gui.persistence.PersistentComponent, boolean)"/>
+  <class name="com.davidecavestro.common.gui.persistence.PersistenceUtils"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistenceUtils" name="void makeColumnWidthsPersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage, java.lang.String, javax.swing.JTable)"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistenceUtils" name="boolean restorePersistentBoundsToPreferredSize(com.davidecavestro.common.gui.persistence.PersistenceStorage, java.lang.String, javax.swing.JComponent)"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistenceUtils" name="boolean restorePersistentBounds(com.davidecavestro.common.gui.persistence.PersistenceStorage, java.lang.String, java.awt.Component)"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistenceUtils" name="void restorePersistentColumnWidths(com.davidecavestro.common.gui.persistence.PersistenceStorage, java.lang.String, javax.swing.JTable)"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistenceUtils" name="void makeBoundsPersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage, java.lang.String, java.awt.Component)"/>
+  <class name="com.davidecavestro.common.gui.persistence.PersistentComponent"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistentComponent" name="void makePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistentComponent" name="java.lang.String getPersistenceKey()"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistentComponent" name="boolean restorePersistent(com.davidecavestro.common.gui.persistence.PersistenceStorage)"/>
+  <class name="com.davidecavestro.common.gui.persistence.PersistenceStorage"/>
+  <method class="com.davidecavestro.common.gui.persistence.PersistenceStorage" name="java.util.Properties getRegistry()"/>
+  <class name="com.davidecavestro.common.gui.ComponentSupport"/>
+  <method class="com.davidecavestro.common.gui.ComponentSupport" name="java.awt.Window getWindow(java.awt.Component)"/>
+  <class name="com.davidecavestro.common.gui.SwingWorker$ThreadVar"/>
+  <field class="com.davidecavestro.common.gui.SwingWorker$ThreadVar" name="thread"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker$ThreadVar" name="void clear()"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker$ThreadVar" name="java.lang.Thread get()"/>
+  <field class="com.davidecavestro.common.gui.SwingWorker$2" name="this$0"/>
+  <field class="com.davidecavestro.common.gui.SwingWorker$2" name="val$doFinished"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker$2" name="void run()"/>
+  <field class="com.davidecavestro.common.gui.SwingWorker$1" name="this$0"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker$1" name="void run()"/>
+  <class name="com.davidecavestro.common.gui.SwingWorker"/>
+  <field class="com.davidecavestro.common.gui.SwingWorker" name="threadVar"/>
+  <field class="com.davidecavestro.common.gui.SwingWorker" name="value"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="java.lang.Object construct()"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="void finished()"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="void access$000(com.davidecavestro.common.gui.SwingWorker, java.lang.Object)"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="void interrupt()"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="void setValue(java.lang.Object)"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="void start()"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="java.lang.Object get()"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="com.davidecavestro.common.gui.SwingWorker$ThreadVar access$100(com.davidecavestro.common.gui.SwingWorker)"/>
+  <method class="com.davidecavestro.common.gui.SwingWorker" name="java.lang.Object getValue()"/>
+  <class name="com.davidecavestro.common.cache.Key"/>
+  <method class="com.davidecavestro.common.cache.Key" name="java.lang.Object getKey()"/>
+  <class name="com.davidecavestro.common.cache.DisposableData"/>
+  <field class="com.davidecavestro.common.cache.DisposableData" name="_nullData"/>
+  <field class="com.davidecavestro.common.cache.DisposableData" name="_ref"/>
+  <method class="com.davidecavestro.common.cache.DisposableData" name="boolean isValid()"/>
+  <method class="com.davidecavestro.common.cache.DisposableData" name="java.lang.Object getData()"/>
+  <method class="com.davidecavestro.common.cache.DisposableData" name="java.lang.String toString()"/>
+  <class name="com.davidecavestro.common.cache.Entry"/>
+  <method class="com.davidecavestro.common.cache.Entry" name="com.davidecavestro.common.cache.Key getKey()"/>
+  <method class="com.davidecavestro.common.cache.Entry" name="com.davidecavestro.common.cache.Data getData()"/>
+  <method class="com.davidecavestro.common.cache.Entry" name="boolean isValid()"/>
+  <class name="com.davidecavestro.common.cache.HardData"/>
+  <field class="com.davidecavestro.common.cache.HardData" name="_data"/>
+  <method class="com.davidecavestro.common.cache.HardData" name="boolean isValid()"/>
+  <method class="com.davidecavestro.common.cache.HardData" name="java.lang.Object getData()"/>
+  <method class="com.davidecavestro.common.cache.HardData" name="java.lang.String toString()"/>
+  <class name="com.davidecavestro.common.cache.Data"/>
+  <method class="com.davidecavestro.common.cache.Data" name="java.lang.Object getData()"/>
+  <method class="com.davidecavestro.common.cache.Data" name="boolean isValid()"/>
+  <class name="com.davidecavestro.common.help.HelpResource"/>
+  <field class="com.davidecavestro.common.help.HelpResource" name="_resource"/>
+  <method class="com.davidecavestro.common.help.HelpResource" name="java.lang.String getValue()"/>
+  <method class="com.davidecavestro.common.help.HelpResource" name="boolean equals(java.lang.Object)"/>
+  <method class="com.davidecavestro.common.help.HelpResource" name="java.lang.String toString()"/>
+  <class name="com.davidecavestro.common.help.HelpResourcesResolver"/>
+  <field class="com.davidecavestro.common.help.HelpResourcesResolver" name="_properties"/>
+  <method class="com.davidecavestro.common.help.HelpResourcesResolver" name="java.lang.String resolveHelpID(com.davidecavestro.common.help.HelpResource)"/>
+  <class name="com.davidecavestro.common.help.HelpManager"/>
+  <field class="com.davidecavestro.common.help.HelpManager" name="_mainHelpBroker"/>
+  <field class="com.davidecavestro.common.help.HelpManager" name="_csh"/>
+  <field class="com.davidecavestro.common.help.HelpManager" name="_resolver"/>
+  <method class="com.davidecavestro.common.help.HelpManager" name="javax.help.HelpBroker getMainHelpBroker()"/>
+  <method class="com.davidecavestro.common.help.HelpManager" name="void initialize(javax.swing.JMenuItem)"/>
+  <method class="com.davidecavestro.common.help.HelpManager" name="com.davidecavestro.common.help.HelpResourcesResolver getResolver()"/>
+  <class name="com.davidecavestro.common.application.ApplicationData"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="_releaseProperties"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="_versionNumber"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="PROPNAME_MAJORVERSIONNUMBER"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="PROPNAME_BUILD_DATE"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="_buildNumber"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="PROPNAME_MINORVERSIONNUMBER"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="_buildDate"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="PROPNAME_RELEASE_DATE"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="PROPNAME_INTERNALAPPLICATIONNAME"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="PROPNAME_EXTERNALAPPLICATIONNAME"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="_releaseDate"/>
+  <field class="com.davidecavestro.common.application.ApplicationData" name="PROPNAME_BUILDNUMBER"/>
+  <method class="com.davidecavestro.common.application.ApplicationData" name="java.util.Calendar getReleaseDate()"/>
+  <method class="com.davidecavestro.common.application.ApplicationData" name="java.lang.String getVersionNumber()"/>
+  <method class="com.davidecavestro.common.application.ApplicationData" name="java.util.Calendar getBuildDate()"/>
+  <method class="com.davidecavestro.common.application.ApplicationData" name="java.lang.String getApplicationInternalName()"/>
+  <method class="com.davidecavestro.common.application.ApplicationData" name="java.lang.String getBuildNumber()"/>
+  <method class="com.davidecavestro.common.application.ApplicationData" name="java.lang.String getApplicationExternalName()"/>
+  <class name="com.davidecavestro.common.log.Logger"/>
+  <method class="com.davidecavestro.common.log.Logger" name="void debug(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.Logger" name="void debug(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.Logger" name="void close()"/>
+  <method class="com.davidecavestro.common.log.Logger" name="void warning(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.Logger" name="void info(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.Logger" name="void error(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.Logger" name="void error(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.Logger" name="void warning(java.lang.String)"/>
+  <class name="com.davidecavestro.common.log.LoggerAdapter"/>
+  <method class="com.davidecavestro.common.log.LoggerAdapter" name="void debug(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.LoggerAdapter" name="void debug(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.LoggerAdapter" name="void warning(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.LoggerAdapter" name="void info(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.LoggerAdapter" name="void close()"/>
+  <method class="com.davidecavestro.common.log.LoggerAdapter" name="void error(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.LoggerAdapter" name="void warning(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.LoggerAdapter" name="void error(java.lang.String)"/>
+  <class name="com.davidecavestro.common.log.CompositeLogger"/>
+  <field class="com.davidecavestro.common.log.CompositeLogger" name="_successor"/>
+  <field class="com.davidecavestro.common.log.CompositeLogger" name="_actualLogger"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void warning(com.davidecavestro.common.log.Logger, java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void error(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void debug(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void warning(com.davidecavestro.common.log.Logger, java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void close(com.davidecavestro.common.log.Logger)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void close()"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void debug(com.davidecavestro.common.log.Logger, java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void debug(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void error(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void error(com.davidecavestro.common.log.Logger, java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void error(com.davidecavestro.common.log.Logger, java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void debug(com.davidecavestro.common.log.Logger, java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void warning(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void warning(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void info(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.CompositeLogger" name="void info(com.davidecavestro.common.log.Logger, java.lang.String)"/>
+  <class name="com.davidecavestro.common.log.ConsoleLogger$Run"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$Run" name="attr"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$Run" name="content"/>
+  <class name="com.davidecavestro.common.log.ConsoleLogger$MessageType"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$MessageType" name="WARNING"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$MessageType" name="INFO"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$MessageType" name="DEBUG"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$MessageType" name="_type"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$MessageType" name="ERROR"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger$MessageType" name="java.lang.String getType()"/>
+  <class name="com.davidecavestro.common.log.ConsoleLogger$Paragraph"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$Paragraph" name="logical"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger$Paragraph" name="data"/>
+  <class name="com.davidecavestro.common.log.ConsoleLogger"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger" name="_document"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger" name="runAttr"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger" name="styles"/>
+  <field class="com.davidecavestro.common.log.ConsoleLogger" name="NEWLINE"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void error(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void createStyles()"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void debug(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void finalize()"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void close()"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void debug(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void error(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void addParagraph(com.davidecavestro.common.log.ConsoleLogger$Paragraph)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void printMessage(com.davidecavestro.common.log.ConsoleLogger$MessageType, java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void warning(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void printMessage(com.davidecavestro.common.log.ConsoleLogger$MessageType, java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void warning(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.ConsoleLogger" name="void info(java.lang.String)"/>
+  <class name="com.davidecavestro.common.log.PlainTextLogger$MessageType"/>
+  <field class="com.davidecavestro.common.log.PlainTextLogger$MessageType" name="WARNING"/>
+  <field class="com.davidecavestro.common.log.PlainTextLogger$MessageType" name="INFO"/>
+  <field class="com.davidecavestro.common.log.PlainTextLogger$MessageType" name="DEBUG"/>
+  <field class="com.davidecavestro.common.log.PlainTextLogger$MessageType" name="_type"/>
+  <field class="com.davidecavestro.common.log.PlainTextLogger$MessageType" name="ERROR"/>
+  <class name="com.davidecavestro.common.log.PlainTextLogger"/>
+  <field class="com.davidecavestro.common.log.PlainTextLogger" name="_fw"/>
+  <field class="com.davidecavestro.common.log.PlainTextLogger" name="CR"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void error(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void debug(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void printMessage(com.davidecavestro.common.log.PlainTextLogger$MessageType, java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void finalize()"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void close()"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void debug(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void printMessage(com.davidecavestro.common.log.PlainTextLogger$MessageType, java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void error(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void warning(java.lang.String, java.lang.Throwable)"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void warning(java.lang.String)"/>
+  <method class="com.davidecavestro.common.log.PlainTextLogger" name="void info(java.lang.String)"/>
+  <class name="org.openide.awt.Mnemonics"/>
+  <field class="org.openide.awt.Mnemonics" name="weKnowJDK"/>
+  <field class="org.openide.awt.Mnemonics" name="isJDK14orLaterCache"/>
+  <method class="org.openide.awt.Mnemonics" name="java.util.ResourceBundle getBundle()"/>
+  <method class="org.openide.awt.Mnemonics" name="void setMnemonicIndex(java.lang.Object, int, int)"/>
+  <method class="org.openide.awt.Mnemonics" name="java.lang.String getText(java.lang.Object)"/>
+  <method class="org.openide.awt.Mnemonics" name="void setText(java.lang.Object, java.lang.String)"/>
+  <method class="org.openide.awt.Mnemonics" name="void setMnemonic(java.lang.Object, int)"/>
+  <method class="org.openide.awt.Mnemonics" name="void setLocalizedText2(java.lang.Object, java.lang.String)"/>
+  <method class="org.openide.awt.Mnemonics" name="void setLocalizedText(javax.swing.AbstractButton, java.lang.String)"/>
+  <method class="org.openide.awt.Mnemonics" name="boolean isJDK14orLater()"/>
+  <method class="org.openide.awt.Mnemonics" name="int findMnemonicAmpersand(java.lang.String)"/>
+  <method class="org.openide.awt.Mnemonics" name="void setLocalizedText(javax.swing.JLabel, java.lang.String)"/>
+  <method class="org.openide.awt.Mnemonics" name="int getLatinKeycode(char)"/>
+</expose>
+<map>
+  <class name="com.davidecavestro.rbe.gui.AddEntryDialog$6" map="6"/>
+  <class name="com.davidecavestro.rbe.gui.AddEntryDialog$5" map="5"/>
+  <class name="com.davidecavestro.rbe.gui.AddEntryDialog$4" map="4"/>
+  <class name="com.davidecavestro.rbe.gui.AddEntryDialog$3" map="3"/>
+  <class name="com.davidecavestro.rbe.gui.AddEntryDialog$2" map="2"/>
+  <class name="com.davidecavestro.rbe.gui.AddEntryDialog$1" map="1"/>
+  <class name="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$5" map="5"/>
+  <class name="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$4" map="4"/>
+  <class name="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$3" map="3"/>
+  <class name="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$2" map="2"/>
+  <class name="com.davidecavestro.rbe.gui.SpecifyBundleNameDialog$1" map="1"/>
+  <class name="com.davidecavestro.rbe.gui.Splash$1" map="1"/>
+  <class name="com.davidecavestro.rbe.gui.About$3" map="3"/>
+  <class name="com.davidecavestro.rbe.gui.About$2" map="2"/>
+  <class name="com.davidecavestro.rbe.gui.About$1" map="1"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$29" map="29"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$28" map="28"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$VisibleWorker$1" map="1"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$27" map="27"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$26" map="26"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$25" map="25"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$24" map="24"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$23" map="23"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$22" map="22"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$21" map="21"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$20" map="20"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$ValueCellEditor$1" map="1"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$9" map="9"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$8" map="8"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$19" map="19"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$7" map="7"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$18" map="18"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$6" map="6"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$17" map="17"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$5" map="5"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$16" map="16"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$4" map="4"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$15" map="15"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$3" map="3"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$14" map="14"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$2" map="2"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$13" map="13"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$1" map="1"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$12" map="12"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$11" map="11"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$10" map="10"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$32" map="32"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$31" map="31"/>
+  <class name="com.davidecavestro.rbe.gui.MainWindow$30" map="30"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$9" map="9"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$8" map="8"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$7" map="7"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$6" map="6"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$5" map="5"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$4" map="4"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$3" map="3"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$2" map="2"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$11" map="11"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$10" map="10"/>
+  <class name="com.davidecavestro.rbe.gui.FindDialog$1" map="1"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$9" map="9"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$8" map="8"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$7" map="7"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$6" map="6"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$5" map="5"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$4" map="4"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$13" map="13"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$3" map="3"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$12" map="12"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$2" map="2"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$11" map="11"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$10" map="10"/>
+  <class name="com.davidecavestro.rbe.gui.AddLocaleDialog$1" map="1"/>
+  <class name="com.davidecavestro.rbe.model.DefaultResourceBundleModel$1" map="1"/>
+  <class name="com.davidecavestro.rbe.Application$1" map="1"/>
+  <class name="com.davidecavestro.common.gui.table.TableSorter$1" map="1"/>
+  <class name="com.davidecavestro.common.gui.SwingWorker$2" map="2"/>
+  <class name="com.davidecavestro.common.gui.SwingWorker$1" map="1"/>
+</map>
+<!--
+
+<adjust replaceContents="true">
+  <resource name="com/davidecavestro/rbe/release.properties"/>
+</adjust>
+-->
+</yguard>
