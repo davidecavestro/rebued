@@ -65,6 +65,8 @@ is divided into following sections:
         </condition>
         <condition property="have.sources">
             <or>
+                <available file="${src.license-contents.dir}"/>
+                <available file="${src.help.dir}"/>
                 <available file="${src.java.dir}"/>
             </or>
         </condition>
@@ -93,6 +95,8 @@ is divided into following sections:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target name="-init-check" depends="-pre-init,-init-private,-init-user,-init-project,-do-init">
+        <fail unless="src.license-contents.dir">Must set src.license-contents.dir</fail>
+        <fail unless="src.help.dir">Must set src.help.dir</fail>
         <fail unless="src.java.dir">Must set src.java.dir</fail>
         <fail unless="build.dir">Must set build.dir</fail>
         <fail unless="dist.dir">Must set dist.dir</fail>
@@ -114,7 +118,7 @@ is divided into following sections:
     </target>
     <target name="-init-macrodef-javac">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute name="srcdir" default="${src.java.dir}"/>
+            <attribute name="srcdir" default="${src.license-contents.dir}:${src.help.dir}:${src.java.dir}"/>
             <attribute name="destdir" default="${build.classes.dir}"/>
             <attribute name="classpath" default="${javac.classpath}"/>
             <attribute name="debug" default="${javac.debug}"/>
@@ -230,6 +234,7 @@ is divided into following sections:
     -->
     <target name="deps-jar" depends="init" unless="no.deps">
         <ant target="jar" inheritall="false" antfile="${project.common}/build.xml"/>
+        <ant target="jar" inheritall="false" antfile="${project.rbe-icons}/build.xml"/>
     </target>
     <target name="-pre-pre-compile" depends="init,deps-jar">
         <mkdir dir="${build.classes.dir}"/>
@@ -241,6 +246,8 @@ is divided into following sections:
     <target name="-do-compile" depends="init,deps-jar,-pre-pre-compile,-pre-compile" if="have.sources">
         <j2seproject3:javac/>
         <copy todir="${build.classes.dir}">
+            <fileset dir="${src.license-contents.dir}" excludes="${build.classes.excludes}"/>
+            <fileset dir="${src.help.dir}" excludes="${build.classes.excludes}"/>
             <fileset dir="${src.java.dir}" excludes="${build.classes.excludes}"/>
         </copy>
     </target>
@@ -391,9 +398,15 @@ is divided into following sections:
                 <path path="${javac.classpath}"/>
             </classpath>
             <sourcepath>
+                <pathelement location="${src.license-contents.dir}"/>
+                <pathelement location="${src.help.dir}"/>
                 <pathelement location="${src.java.dir}"/>
             </sourcepath>
+            <packageset dir="${src.license-contents.dir}" includes="*/**"/>
+            <packageset dir="${src.help.dir}" includes="*/**"/>
             <packageset dir="${src.java.dir}" includes="*/**"/>
+            <fileset dir="${src.license-contents.dir}" includes="*.java"/>
+            <fileset dir="${src.help.dir}" includes="*.java"/>
             <fileset dir="${src.java.dir}" includes="*.java"/>
         </javadoc>
     </target>
@@ -523,6 +536,7 @@ is divided into following sections:
     -->
     <target name="deps-clean" depends="init" unless="no.deps">
         <ant target="clean" inheritall="false" antfile="${project.common}/build.xml"/>
+        <ant target="clean" inheritall="false" antfile="${project.rbe-icons}/build.xml"/>
     </target>
     <target name="-do-clean" depends="init">
         <delete dir="${build.dir}"/>
