@@ -27,6 +27,7 @@ import com.davidecavestro.rbe.model.event.ResourceBundleModelEvent;
 import com.davidecavestro.rbe.model.event.ResourceBundleModelListener;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.*;
@@ -115,7 +116,9 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 	
 	
 	
-	private final static Color inactiveCaptionColor = javax.swing.UIManager.getDefaults().getColor("inactiveCaption");
+//	private final static Color inactiveCaptionColor = javax.swing.UIManager.getDefaults().getColor("inactiveCaption");
+	private final static Color inactiveCaptionColor = Color.lightGray;
+	
 	private final static Color tableBackgroundColor = javax.swing.UIManager.getDefaults().getColor("Table.background");
 	//	private final Color keyBackgroundColor = javax.swing.UIManager.getDefaults().getColor("control");
 	private final static Color keyBackgroundColor = javax.swing.UIManager.getDefaults().getColor("Table.background");
@@ -302,8 +305,8 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 		this._context.getModel ().addPropertyChangeListener (new PropertyChangeListener (){
 				public void propertyChange (PropertyChangeEvent e){
 					String pName = e.getPropertyName ();
-					if (pName.equals ("name") || pName.equalsIgnoreCase ("isModified")){
-						setTitle (prepareTitle (_context.getModel ()));
+					if (pName.equals ("name") || pName.equals ("path") || pName.equalsIgnoreCase ("isModified")){
+						updateTitle ();
 					}
 				}
 			}
@@ -335,7 +338,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 			}
 		});
 		
-		setTitle (prepareTitle (this._context.getModel ()));
+		updateTitle ();
 		
 		setLocationRelativeTo (null);
 		
@@ -402,15 +405,28 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 	}
 	
 	
+	private void updateTitle () {
+		setTitle (prepareTitle (_context.getModel ()));
+	}
+	
 	private String prepareTitle (DefaultResourceBundleModel model){
 		final StringBuffer sb = new StringBuffer ();
-		sb.append (_context.getApplicationData ().getApplicationExternalName ()).append (" - Bundle ").append (model.getName ());
+		sb.append (_context.getApplicationData ().getApplicationExternalName ()).append (" - Bundle ");
+		
 		if (model.isModified ()){
-			sb.append (" [")
-			.append (ResourceBundle.getBundle ("com.davidecavestro.rbe.gui.res").getString ("Modified"))
-			.append ("]");
-			
+			sb.append ("*");
 		}
+		
+		sb.append (model.getName ());
+		if (model.getPath ()!=null) {
+			sb.append ("[").append (model.getPath ()).append ("]");
+		}
+//		if (model.isModified ()){
+//			sb.append (" [")
+//			.append (ResourceBundle.getBundle ("com.davidecavestro.rbe.gui.res").getString ("Modified"))
+//			.append ("]");
+//			
+//		}
 		return sb.toString ();
 	}
 	
@@ -677,6 +693,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
     jScrollPane3.setBackground(javax.swing.UIManager.getDefaults().getColor("Table.background"));
     jScrollPane3.setMaximumSize(null);
     jScrollPane3.setMinimumSize(null);
+    jScrollPane3.setOpaque(false);
     jScrollPane3.getViewport ().setBackground (javax.swing.UIManager.getDefaults().getColor("Table.background"));
     valuesTable.setFont(new java.awt.Font("Monospaced", 0, 12));
     valuesTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
@@ -928,8 +945,8 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
+        mainToolbar.setFloatable(false);
         mainToolbar.setRollover(true);
-        mainToolbar.setMinimumSize(new java.awt.Dimension(18, 28));
         javax.help.CSH.setHelpIDString (mainToolbar, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
 
         jButton1.setAction(new NewBundleAction ());
@@ -975,9 +992,13 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
         jButton5.setPreferredSize(new java.awt.Dimension(30, 30));
         mainToolbar.add(jButton5);
 
-        jPanel5.add(mainToolbar, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(mainToolbar, gridBagConstraints);
 
+        mainToolbar1.setFloatable(false);
         mainToolbar1.setRollover(true);
+        mainToolbar1.setPreferredSize(new java.awt.Dimension(164, 34));
         javax.help.CSH.setHelpIDString (mainToolbar1, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
 
         jButton6.setAction(getActionByName(DefaultEditorKit.cutAction));
@@ -1052,8 +1073,11 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
         redoButton.putClientProperty ("hideActionText", Boolean.TRUE);
         mainToolbar1.add(redoButton);
 
-        jPanel5.add(mainToolbar1, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(mainToolbar1, gridBagConstraints);
 
+        mainToolbar2.setFloatable(false);
         mainToolbar2.setRollover(true);
         javax.help.CSH.setHelpIDString (mainToolbar2, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
 
@@ -1069,6 +1093,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         jPanel5.add(mainToolbar2, gridBagConstraints);
 
         mainPanel.add(jPanel5, java.awt.BorderLayout.NORTH);
@@ -1143,7 +1168,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
         editMenu.setFont(new java.awt.Font("Dialog", 0, 12));
         undoMenuItem.setAction(_context.getUndoManager ().getUndoAction());
         undoMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        undoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/transparent.png")));
+        undoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/undo.png")));
         undoMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 undoMenuItemActionPerformed(evt);
@@ -1154,7 +1179,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 
         redoMenuItem.setAction(_context.getUndoManager ().getRedoAction());
         redoMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        redoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/transparent.png")));
+        redoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/redo.png")));
         editMenu.add(redoMenuItem);
 
         editMenu.add(jSeparator4);
@@ -1428,7 +1453,11 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 	}//GEN-LAST:event_addEntryMenuItemActionPerformed
 	
 	private void exitMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-		System.exit (0);
+		/*
+		 * Questo evento notifica la richiesta di chiusura della finestra.
+		 * Il listener registrato da Application dovrebbe provvedere alla chisuura effettiva dell'applicazione.
+		 */
+		dispatchEvent (new WindowEvent (this, WindowEvent.WINDOW_CLOSING));
 	}//GEN-LAST:event_exitMenuItemActionPerformed
 
 	public String getPersistenceKey () {
@@ -2410,6 +2439,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 				}
 			});
 			item.setText (recentPaths[ix]);
+//			item.setMaximumSize (new Dimension (MainWindow.this.getWidth ()/3, 1000));
 			recentMenu.add (item);
 		}
 		if (recentMenu.getItemCount ()==0){

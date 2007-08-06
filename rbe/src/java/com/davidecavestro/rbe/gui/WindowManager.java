@@ -237,5 +237,16 @@ public class WindowManager implements ActionListener, DialogListener {
 		return this._about;
 	}
 	
-	
+	/**
+	 * Chiude e rilascia tutte le finestre.
+	 */
+	public void disposeAllFrames () {
+		/*
+		 * Tutti i figli di MainWindow vengono chiusi in automatico
+		 */
+		getMainWindow ().setVisible (false);
+		getMainWindow ().dispose ();
+		getLogConsole ().setVisible (false);
+		getLogConsole ().dispose ();
+	}	
 }

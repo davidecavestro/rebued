@@ -6,12 +6,8 @@
 
 package com.davidecavestro.rbe.conf;
 
-import com.davidecavestro.common.application.ApplicationData;
-import com.davidecavestro.common.util.settings.SettingsSupport;
 import com.davidecavestro.rbe.Application;
-import java.awt.*;
-import java.util.*;
-import javax.swing.UIManager;
+import java.io.File;
 
 /**
  * Le impostazioni personalizzate dell'utente.
@@ -43,11 +39,7 @@ public final class UserSettings extends AbstractSettings {
 	 * @return il percorso del file di properties.
 	 */	
 	public String getPropertiesFileName () {
-		final StringBuffer sb = new StringBuffer ();
-		sb.append (
-			this._userResources.getUserApplicationSettingsDirPath ())
-			.append ("/").append (ResourceNames.USER_SETTINGSFILE_NAME);
-		return sb.toString ();
+		return new File (_userResources.getUserApplicationSettingsDirPath (), ResourceNames.USER_SETTINGSFILE_NAME).getPath ();
 	}
 
 	public String getPropertiesHeader () {

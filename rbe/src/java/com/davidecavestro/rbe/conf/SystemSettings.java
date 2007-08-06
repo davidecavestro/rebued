@@ -7,7 +7,7 @@
 package com.davidecavestro.rbe.conf;
 
 import com.davidecavestro.rbe.Application;
-import java.awt.*;
+import java.io.File;
 
 /**
  * impostazioni configurabili di sistema.
@@ -33,9 +33,7 @@ public final class SystemSettings extends AbstractSettings {
 	}	
 	
 	public String getPropertiesFileName () {
-		final StringBuffer sb = new StringBuffer ();
-		sb.append (this._systemResources.getSystemApplicationSettingsPath ()).append ("/").append (ResourceNames.SYSTEM_SETTINGSFILE_NAME);
-		return sb.toString ();
+		return new File (_systemResources.getSystemApplicationSettingsPath (), ResourceNames.SYSTEM_SETTINGSFILE_NAME).getPath ();
 	}
 
 	public String getPropertiesHeader () {

@@ -7,6 +7,7 @@
 package com.davidecavestro.rbe;
 
 import com.davidecavestro.common.application.ApplicationData;
+import com.davidecavestro.common.gui.HungAwtExit;
 import com.davidecavestro.common.gui.persistence.PersistenceStorage;
 import com.davidecavestro.common.gui.persistence.UIPersister;
 import com.davidecavestro.common.help.HelpManager;
@@ -25,19 +26,18 @@ import com.davidecavestro.rbe.gui.WindowManager;
 import com.davidecavestro.rbe.actions.ActionManager;
 import com.davidecavestro.rbe.conf.ApplicationOptions;
 import com.davidecavestro.rbe.conf.DefaultSettings;
+import com.davidecavestro.rbe.gui.Splash;
 import com.davidecavestro.rbe.model.DefaultResourceBundleModel;
 import com.davidecavestro.rbe.model.LocalizationProperties;
-import com.davidecavestro.rbe.model.ResourceBundleModel;
 import com.davidecavestro.rbe.model.undo.RBUndoManager;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.Properties;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.StyledDocument;
 
 /**
  * Il gestore centrale dell'intera applicazione.
@@ -54,6 +54,18 @@ public class Application {
 	 */
 	public Application (final CommandLineApplicationEnvironment args) {
 		this._env = args;
+		try {
+			UIManager.setLookAndFeel ("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+		} catch (InstantiationException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		} catch (UnsupportedLookAndFeelException ex) {
+			ex.printStackTrace();
+		} catch (IllegalAccessException ex) {
+			ex.printStackTrace();
+		}
+		
 
 //		final Locale fooLocale = Locale.ITALIAN;
 //		final Properties fooProperties = new Properties ();
@@ -109,12 +121,7 @@ public class Application {
 		
 		
 		try {
-			final StringBuffer sb = new StringBuffer ();
-			sb.append (applicationOptions.getLogDirPath () ).append ("/")
-			.append (CalendarUtils.getTS (Calendar.getInstance ().getTime (), CalendarUtils.FILENAME_TIMESTAMP_FORMAT))
-			.append (".log");
-			
-			final File plainTextLogFile = new File (sb.toString ());
+			final File plainTextLogFile = new File (applicationOptions.getLogDirPath (), CalendarUtils.getTS (Calendar.getInstance ().getTime (), CalendarUtils.FILENAME_TIMESTAMP_FORMAT)+".log");
 			
 //			logDocument.setParser (new javax.swing.text.html.parser.ParserDelegator ());
 			
@@ -148,7 +155,7 @@ public class Application {
 			model,
 			undoManager,
 			new ActionManager (),
-			new HelpManager (new HelpResourcesResolver (p), "help/MainUrbeHelp.hs"),
+			new HelpManager (new HelpResourcesResolver (p), "help-contents/MainUrbeHelp.hs"),
 			peh
 			);
 		
@@ -163,9 +170,10 @@ public class Application {
 	public void start (){
 		_context.getLogger().info ("starting UI");
 		final WindowManager wm = this._context.getWindowManager ();
-		wm.getSplashWindow (this._context.getApplicationData ()).show ();
+		final Splash splash = wm.getSplashWindow (this._context.getApplicationData ());
+		splash.show ();
 		try {
-			wm.getSplashWindow (this._context.getApplicationData ()).showInfo ("Initializing context...");
+			splash.showInfo ("Initializing context...");
 			wm.init (this._context);
 			final ConsoleLogger cl = new ConsoleLogger (new DefaultStyledDocument(), true);
 
@@ -180,7 +188,7 @@ public class Application {
 	//				}
 	//			});
 	//		}
-			wm.getSplashWindow (this._context.getApplicationData ()).showInfo ("Preparing main window...");
+			splash.showInfo ("Preparing main window...");
 			wm.getMainWindow ().addWindowListener (
 				new java.awt.event.WindowAdapter () {
 					public void windowClosing (java.awt.event.WindowEvent evt) {
@@ -190,7 +198,8 @@ public class Application {
 					}
 				});
 		} finally {
-			wm.getSplashWindow (this._context.getApplicationData ()).hide ();
+			splash.setVisible (false);
+			splash.dispose ();
 		}
 		wm.getMainWindow ().show ();
 		_context.getLogger().info ("UI successfully started");
@@ -225,7 +234,9 @@ public class Application {
 	 */
 	public final void exit (){
 		beforeExit ();
-		System.exit (0);
+		_context.getWindowManager ().disposeAllFrames ();
+		HungAwtExit.explain (_context.getWindowManager ().getMainWindow ());
+		System.out.println ("Closing application...");
 	}
 	
 	private final class UserUIStorage implements PersistenceStorage {

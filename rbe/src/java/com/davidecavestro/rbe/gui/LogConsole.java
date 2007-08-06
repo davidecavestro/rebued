@@ -43,7 +43,6 @@ public class LogConsole extends javax.swing.JFrame implements PersistentComponen
 
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         logPanel.setBackground(new java.awt.Color(0, 0, 0));
         logPanel.setEditable(false);
         logPanel.setForeground(new java.awt.Color(255, 255, 255));

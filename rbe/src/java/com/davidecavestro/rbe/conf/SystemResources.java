@@ -7,6 +7,7 @@
 package com.davidecavestro.rbe.conf;
 
 import com.davidecavestro.common.application.ApplicationData;
+import java.io.File;
 
 /**
  * Risorse applicative condivise tra gli utenti.
@@ -49,10 +50,7 @@ public class SystemResources {
 	 * @return il percorso della directory privata dell'utente di supporto all'applicazione .
 	 */	
 	public String getSystemApplicationDirPath (){
-		final StringBuffer sb = new StringBuffer ();
-		sb.append (this._env.getApplicationDirPath ());
-		sb.append ("/").append (this.getUserApplicationRepositoryDirName ());
-		return sb.toString ();
+		return new File (_env.getApplicationDirPath (), getUserApplicationRepositoryDirName ()).getPath ();
 	}
 	
 	/**
@@ -61,10 +59,7 @@ public class SystemResources {
 	 * @return il percorso della directory privata dell'utente contenente la configurazione dell'applicazione .
 	 */	
 	public String getUserApplicationSettingsDirPath (){
-		final StringBuffer sb = new StringBuffer ();
-		sb.append (this._env.getApplicationDirPath ());
-		sb.append ("/").append (ResourceNames.USER_SETTINGSDIR_NAME);
-		return sb.toString ();
+		return new File (_env.getApplicationDirPath (), ResourceNames.USER_SETTINGSDIR_NAME).getPath ();
 	}
 	
 	/**
@@ -73,10 +68,7 @@ public class SystemResources {
 	 * @return il percorso della directory privata dell'utente contenente i dati dell'applicazione .
 	 */	
 	public String getUserApplicationDataDirPath (){
-		final StringBuffer sb = new StringBuffer ();
-		sb.append (this._env.getApplicationDirPath ());
-		sb.append ("/").append (ResourceNames.USER_DATADIR_NAME);
-		return sb.toString ();
+		return new File (_env.getApplicationDirPath (), ResourceNames.USER_DATADIR_NAME).getPath ();
 	}
 	
 	/**
