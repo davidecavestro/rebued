@@ -49,7 +49,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.SortedMap;
 import java.util.StringTokenizer;
 import java.util.TimerTask;
@@ -66,6 +65,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.event.*;
 import javax.swing.event.EventListenerList;
 import javax.swing.event.ListSelectionEvent;
@@ -124,7 +125,8 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 	
 	
 //	private final static Color inactiveCaptionColor = javax.swing.UIManager.getDefaults().getColor("inactiveCaption");
-	private final static Color inactiveCaptionColor = Color.cyan;
+	private final static Color inactiveCaptionColor = javax.swing.UIManager.getDefaults().getColor("control");
+//	private final static Color inactiveCaptionColor = Color.lightGray;
 	
 	private final static Color tableBackgroundColor = javax.swing.UIManager.getDefaults().getColor("Table.background");
 	//	private final Color keyBackgroundColor = javax.swing.UIManager.getDefaults().getColor("control");
@@ -471,7 +473,16 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
         jSplitPane1 = new javax.swing.JSplitPane();
         valuesTablePanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        valuesTable = new JXTable (this._localizationTableModel);
+        valuesTable = new JXTable (this._localizationTableModel){
+            @Override
+            protected void resetDefaultTableCellRendererColors(Component renderer, int row, int column) {
+                /*
+                * @workaround swingx
+                * non fa nulla, altrimenti viene vanificato il codice deltablecellrenderer"
+                */
+            }
+
+        };
         editorPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -653,6 +664,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 
         mainPanel.add(statusPanel, java.awt.BorderLayout.SOUTH);
 
+        jTabbedPane1.setFont(new java.awt.Font("Dialog", 0, 12));
         tree_table_splitPane.setMaximumSize(null);
         tree_table_splitPane.setOneTouchExpandable(true);
         bundleTreePanel.setLayout(new java.awt.BorderLayout());
@@ -716,6 +728,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
     valuesTable.setPreferredSize(null);
 
     valuesTable.setDefaultRenderer (Object.class, new ValuesTableCellRenderer ());
+    valuesTable.setDefaultRenderer (String.class, new ValuesTableCellRenderer ());
 
     valuesTable.setDefaultEditor (String.class, new ValueCellEditor ());
 
@@ -928,13 +941,14 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 
         tree_table_splitPane.setRightComponent(jPanel3);
 
-        jTabbedPane1.addTab("tab1", tree_table_splitPane);
+        jTabbedPane1.addTab(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("ViewSelectionChoice.ChoiceValue.ClassicViewChoice"), tree_table_splitPane);
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         keysTreeTable.setClosedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/folder_key.png")));
         keysTreeTable.setColumnControlVisible(true);
         keysTreeTable.setFont(new java.awt.Font("Monospaced", 0, 12));
+        keysTreeTable.setGridColor(new java.awt.Color(204, 204, 204));
         keysTreeTable.setHorizontalScrollEnabled(true);
         keysTreeTable.setLeafIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/bullet_key.png")));
         keysTreeTable.setOpenIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/folder_key.png")));
@@ -984,7 +998,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
             gridBagConstraints.weighty = 1.0;
             jPanel1.add(jScrollPane5, gridBagConstraints);
 
-            jTabbedPane1.addTab("tab2", jPanel1);
+            jTabbedPane1.addTab(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("ViewSelectionChoice.ChoiceValue.KeysTreeChoice"), jPanel1);
 
             mainPanel.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
@@ -3114,7 +3128,16 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 	
 	private JXTreeTable createKeysTreeTable () {
 		
-		return new KeysTreeTable ();
+		return new KeysTreeTable (){
+			@Override
+			protected void resetDefaultTableCellRendererColors(Component renderer, int row, int column) {
+				/*
+				* @workaround swingx
+				* non fa nulla, altrimenti viene vanificato il codice deltablecellrenderer"
+				*/
+			}
+
+		};
 	}
 	
 	
@@ -3175,6 +3198,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 //					public void run () {
 						((AbstractTableModel)getModel ()).fireTableStructureChanged ();
 						fireTreeStructureChanged (this, new Object[]{getRoot ()}, new int[0], new Object[0]);
+						keysTreeTable.revalidate ();
 //					}
 //				});
 			}
@@ -3386,46 +3410,51 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 	private class ValuesTableCellRenderer extends SearchRenderer implements TableCellRenderer {
 		
 		public ValuesTableCellRenderer () {
-			super (_matcher, new DefaultTableCellRenderer () {
-				
-				private Font boldFont;
-				private Font getBoldFont (final JLabel label) {
-					if (boldFont == null) {
-						boldFont = label.getFont ().deriveFont (Font.BOLD);
-					}
-					return boldFont;
-				}
-				
-				private Font plainFont;
-				private Font getPlainFont (final JLabel label) {
-					if (boldFont == null) {
-						boldFont = label.getFont ().deriveFont (Font.PLAIN);
-					}
-					return plainFont;
-				}
-				
-				public Component getTableCellRendererComponent(JTable table, Object value,
-					boolean isSelected, boolean hasFocus, int row, int column) {
+			super (_matcher, new DefaultTableCellRenderer ());
+		}
 
-					final JLabel label = (JLabel)super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
-					final int modelColumn = valuesTable.convertColumnIndexToModel (column);
-					if (0 == modelColumn) {
-						// colonna chiavi
-						label.setFont (getBoldFont (label));
-						label.setBackground (keyBackgroundColor);
-						label.setForeground (keyForegroundColor);
-					} else {
-						label.setFont (getPlainFont (label));
-						if (null==value) {
-							label.setBackground (inactiveCaptionColor);
-						} else {
-							label.setBackground (tableBackgroundColor);
-						}
-						label.setForeground (valueForegroundColor);
-					}
-					return label;
+				
+		private Font boldFont;
+		private Font getBoldFont (final JLabel label) {
+			if (boldFont == null) {
+				boldFont = label.getFont ().deriveFont (Font.BOLD);
+			}
+			return boldFont;
+		}
+
+		private Font plainFont;
+		private Font getPlainFont (final JLabel label) {
+			if (boldFont == null) {
+				boldFont = label.getFont ().deriveFont (Font.PLAIN);
+			}
+			return plainFont;
+		}
+
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value,
+			boolean isSelected, boolean hasFocus, int row, int column) {
+
+			final JLabel label = (JLabel)super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+			final int modelColumn = valuesTable.convertColumnIndexToModel (column);
+//			label.setBackground (inactiveCaptionColor);
+			if (0 == modelColumn) {
+				// colonna chiavi
+				label.setFont (getBoldFont (label));
+				label.setBackground (keyBackgroundColor);
+				label.setForeground (keyForegroundColor);
+			} else {
+				label.setFont (getPlainFont (label));
+				if (null==value) {
+//					System.out.println ("Setting empty backgound for VALUES table");
+					label.setBackground (inactiveCaptionColor);
+//					label.setText ("NULL");
+				} else {
+					label.setBackground (tableBackgroundColor);
 				}
-			});
+				label.setForeground (valueForegroundColor);
+			}
+//			label.setOpaque (false);
+			return label;
 		}
 	}
 	
@@ -3451,7 +3480,8 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 					return plainFont;
 				}
 				
-				
+				final Border nullBorder = new LineBorder (keysTreeTable.getGridColor ());
+				final Border nullSelectedBorder = new LineBorder (keysTreeTable.getSelectionBackground (), 2);
 				
 				public Component getTableCellRendererComponent(JTable table, Object value,
 					boolean isSelected, boolean hasFocus, int row, int column) {
@@ -3478,6 +3508,12 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 							label.setFont (getPlainFont (label));
 							if (null==value) {
 								label.setBackground (inactiveCaptionColor);
+								if (hasFocus) {
+									label.setBorder (nullSelectedBorder);
+								} else {
+									label.setBorder (nullBorder);
+								}
+//								System.out.println ("Setting empty backgound for KEYS treetable");
 							} else {
 								label.setBackground (tableBackgroundColor);
 							}
