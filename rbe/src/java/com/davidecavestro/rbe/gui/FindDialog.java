@@ -6,22 +6,18 @@
 
 package com.davidecavestro.rbe.gui;
 
-import com.davidecavestro.common.util.action.ActionNotifier;
-import com.davidecavestro.common.util.action.ActionNotifierImpl;
+import com.davidecavestro.rbe.ApplicationContext;
 import com.davidecavestro.rbe.actions.FindNextAction;
-import com.davidecavestro.rbe.gui.search.Matcher;
+import com.davidecavestro.rbe.help.HelpResources;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.text.JTextComponent;
 
 /**
+ * Dialog di ricerca
  *
  * @author  davide
  */
@@ -31,9 +27,12 @@ public class FindDialog extends javax.swing.JDialog {
 	
     private java.beans.PropertyChangeSupport changeSupport;
 	
+	private final ApplicationContext _context;
+	
 	/** Costruttore. */
-	public FindDialog (java.awt.Frame parent, boolean modal, FindNextAction findNextAction){
+	public FindDialog (final ApplicationContext context, java.awt.Frame parent, boolean modal, FindNextAction findNextAction){
 		super (parent, modal);
+		_context = context;
 		this._findNextAction = findNextAction;
 		initComponents ();
 		closeButton.getInputMap (JComponent.WHEN_IN_FOCUSED_WINDOW).put (KeyStroke.getKeyStroke ("ESCAPE"), "cancel");
@@ -53,6 +52,11 @@ public class FindDialog extends javax.swing.JDialog {
 		
 		this.getRootPane ().setDefaultButton (okButton);
 		
+		
+		
+		javax.help.CSH.setHelpIDString (helpButton, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.FIND_DIALOG ));
+		_context.getHelpManager ().initialize (helpButton);
+		
 		pack ();
 		setLocationRelativeTo (null);
 		
@@ -70,7 +74,7 @@ public class FindDialog extends javax.swing.JDialog {
         patternComboBox = new javax.swing.JComboBox();
         okButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        helpButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         matchCaseCheckBox = new javax.swing.JCheckBox();
@@ -84,6 +88,9 @@ public class FindDialog extends javax.swing.JDialog {
         setFont(new java.awt.Font("ActionIs", 0, 10));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
             }
@@ -154,15 +161,15 @@ public class FindDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
         getContentPane().add(closeButton, gridBagConstraints);
 
-        jButton3.setFont(new java.awt.Font("Dialog", 0, 12));
-        org.openide.awt.Mnemonics.setLocalizedText(jButton3, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Help"));
+        helpButton.setFont(new java.awt.Font("Dialog", 0, 12));
+        org.openide.awt.Mnemonics.setLocalizedText(helpButton, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Help"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 8, 5, 8);
-        getContentPane().add(jButton3, gridBagConstraints);
+        getContentPane().add(helpButton, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 12));
         jLabel1.setLabelFor(patternComboBox);
@@ -243,6 +250,11 @@ public class FindDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	private void formWindowActivated (java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+		patternComboBox.getEditor ().selectAll ();
+		patternComboBox.requestFocusInWindow ();
+	}//GEN-LAST:event_formWindowActivated
+
 	private void matchCaseCheckBoxActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchCaseCheckBoxActionPerformed
 		matchCaseChanged ();
 	}//GEN-LAST:event_matchCaseCheckBoxActionPerformed
@@ -297,8 +309,8 @@ public class FindDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox backwardCheckBox;
     private javax.swing.JButton closeButton;
+    private javax.swing.JButton helpButton;
     private javax.swing.JCheckBox highlightCheckBox;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

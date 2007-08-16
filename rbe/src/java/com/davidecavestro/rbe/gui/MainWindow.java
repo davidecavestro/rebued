@@ -27,7 +27,6 @@ import com.davidecavestro.rbe.model.event.ResourceBundleModelEvent;
 import com.davidecavestro.rbe.model.event.ResourceBundleModelListener;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.*;
@@ -42,6 +41,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,8 +49,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.SortedMap;
 import java.util.StringTokenizer;
 import java.util.TimerTask;
+import java.util.TreeMap;
 import javax.help.CSH;
 import javax.swing.*;
 import javax.swing.Action;
@@ -72,6 +75,7 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.DefaultHighlighter;
@@ -79,13 +83,16 @@ import javax.swing.text.Document;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.PlainDocument;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.decorator.FilterPipeline;
 import org.jdesktop.swingx.decorator.SortController;
 import org.jdesktop.swingx.decorator.Sorter;
+import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 
 /**
  * La finestra principale dell'applicazione.
@@ -117,7 +124,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 	
 	
 //	private final static Color inactiveCaptionColor = javax.swing.UIManager.getDefaults().getColor("inactiveCaption");
-	private final static Color inactiveCaptionColor = Color.lightGray;
+	private final static Color inactiveCaptionColor = Color.cyan;
 	
 	private final static Color tableBackgroundColor = javax.swing.UIManager.getDefaults().getColor("Table.background");
 	//	private final Color keyBackgroundColor = javax.swing.UIManager.getDefaults().getColor("control");
@@ -315,9 +322,8 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 		
 //		valuesTable.setCellSelectionEnabled (true);
 
-		valuesTable.getInputMap (JComponent.WHEN_IN_FOCUSED_WINDOW).put (KeyStroke.getKeyStroke ("F3"), "findNext");
-		valuesTable.getActionMap().put("findNext", _context.getActionManager ().getFindNextAction ());
-		valuesTable.getActionMap().put("find", _findAction);
+		enableSearch (valuesTable);
+		enableSearch (keysTreeTable);
 		
 		_context.addPropertyChangeListener ("isProcessing", new PropertyChangeListener (){
 			public void propertyChange(PropertyChangeEvent evt){
@@ -456,6 +462,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
         modifiedLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
         tableDataLabel = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         tree_table_splitPane = new javax.swing.JSplitPane();
         bundleTreePanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -478,6 +485,9 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
         valueTextArea = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         keyTextField = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        keysTreeTable = createKeysTreeTable ();
         jPanel5 = new javax.swing.JPanel();
         mainToolbar = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
@@ -650,6 +660,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
         bundleTreePanel.setAutoscrolls(true);
         jScrollPane4.setMaximumSize(null);
         jScrollPane4.setMinimumSize(null);
+        bundleTree.setAutoscrolls(true);
         bundleTree.setCellRenderer(	new DefaultTreeCellRenderer () {
             public Component getTreeCellRendererComponent(JTree tree, Object value,
                 boolean sel,
@@ -668,7 +679,6 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
     bundleTree.setModel(new LocalizationTreeModel (this._wm.getApplicationContext ().getModel ()));
     bundleTree.setName("bundleTree");
     bundleTree.setShowsRootHandles(true);
-    bundleTree.setAutoscrolls(true);
     javax.help.CSH.setHelpIDString (bundleTree, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.BUNDLE_TREE ));
     bundleTree.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -705,30 +715,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
     valuesTable.setMinimumSize(null);
     valuesTable.setPreferredSize(null);
 
-    valuesTable.setDefaultRenderer (Object.class, new SearchRenderer (this._matcher, new DefaultTableCellRenderer () {
-        public Component getTableCellRendererComponent(JTable table, Object value,
-            boolean isSelected, boolean hasFocus, int row, int column) {
-
-            final JLabel label = (JLabel)super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
-            final int modelColumn = valuesTable.convertColumnIndexToModel (column);
-            if (0 == modelColumn) {
-                // colonna chiavi
-                label.setFont (label.getFont ().deriveFont (Font.BOLD));
-                label.setBackground (keyBackgroundColor);
-                label.setForeground (keyForegroundColor);
-            } else {
-                label.setFont (label.getFont ().deriveFont (Font.PLAIN));
-                if (null==value) {
-                    label.setBackground (inactiveCaptionColor);
-                } else {
-                    label.setBackground (tableBackgroundColor);
-                }
-                label.setForeground (valueForegroundColor);
-            }
-            return label;
-        }
-
-    }));
+    valuesTable.setDefaultRenderer (Object.class, new ValuesTableCellRenderer ());
 
     valuesTable.setDefaultEditor (String.class, new ValueCellEditor ());
 
@@ -941,351 +928,418 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 
         tree_table_splitPane.setRightComponent(jPanel3);
 
-        mainPanel.add(tree_table_splitPane, java.awt.BorderLayout.CENTER);
+        jTabbedPane1.addTab("tab1", tree_table_splitPane);
 
-        jPanel5.setLayout(new java.awt.GridBagLayout());
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        mainToolbar.setFloatable(false);
-        mainToolbar.setRollover(true);
-        javax.help.CSH.setHelpIDString (mainToolbar, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
+        keysTreeTable.setClosedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/folder_key.png")));
+        keysTreeTable.setColumnControlVisible(true);
+        keysTreeTable.setFont(new java.awt.Font("Monospaced", 0, 12));
+        keysTreeTable.setHorizontalScrollEnabled(true);
+        keysTreeTable.setLeafIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/bullet_key.png")));
+        keysTreeTable.setOpenIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/folder_key.png")));
+        keysTreeTable.setRowSelectionAllowed(false);
+        keysTreeTable.setShowHorizontalLines(true);
+        keysTreeTable.setShowVerticalLines(true);
+        keysTreeTable.setTreeTableModel(((KeysTreeTable)keysTreeTable).createModel ());
 
-        jButton1.setAction(new NewBundleAction ());
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/filenew.png")));
-        jButton1.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("NewToolbuttonTooltip+SHORTCUT"));
-        jButton1.setBorderPainted(false);
-        jButton1.setMargin(null);
-        jButton1.setMinimumSize(new java.awt.Dimension(22, 22));
-        jButton1.setOpaque(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(30, 30));
-        mainToolbar.add(jButton1);
+        keysTreeTable.setDefaultRenderer (Object.class, new KeysTableCellRenderer ());
 
-        jButton2.setAction(new OpenAction ());
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/fileopen.png")));
-        jButton2.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Open...+SHORTCUT"));
-        jButton2.setBorderPainted(false);
-        jButton2.setMargin(null);
-        jButton2.setMaximumSize(new java.awt.Dimension(28, 28));
-        jButton2.setMinimumSize(new java.awt.Dimension(22, 22));
-        jButton2.setOpaque(false);
-        jButton2.setPreferredSize(new java.awt.Dimension(30, 30));
-        mainToolbar.add(jButton2);
+        keysTreeTable.setDefaultEditor (String.class, new ValueCellEditor ());
 
-        jButton3.setAction(saveAction);
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/filesave.png")));
-        jButton3.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Save...+SHORTCUT"));
-        jButton3.setBorderPainted(false);
-        jButton3.setMargin(null);
-        jButton3.setMaximumSize(new java.awt.Dimension(28, 28));
-        jButton3.setMinimumSize(new java.awt.Dimension(22, 22));
-        jButton3.setOpaque(false);
-        jButton3.setPreferredSize(new java.awt.Dimension(30, 30));
-        mainToolbar.add(jButton3);
+        /*
+        * editor (shortcut per cancellazione
+            */
+            keysTreeTable.addKeyListener (new KeyAdapter (){
+                public void keyPressed(KeyEvent e) {
+                    if (e.isControlDown ()){
+                        if (e.getKeyCode ()==KeyEvent.VK_DELETE){
+                            int rowIdx = valuesTable.getSelectedRow ();
+                            int colIdx = valuesTable.getSelectedColumn ();
+                            if (colIdx>1 && rowIdx>=0){
+                                //barbatrucco per evitare editazione spuria
+                                //valuesTable.editCellAt(rowIdx, colIdx);
+                                keysTreeTable.setValueAt (null, rowIdx, colIdx);
+                                e.consume ();
+                            }
+                        } else if (e.getKeyCode ()==KeyEvent.VK_SPACE){
+                            int rowIdx = valuesTable.getSelectedRow ();
+                            int colIdx = valuesTable.getSelectedColumn ();
+                            if (colIdx>1 && rowIdx>=0){
+                                //barbatrucco per evitare editazione spuria
+                                //valuesTable.editCellAt(rowIdx, colIdx);
+                                keysTreeTable.setValueAt ("", rowIdx, colIdx);
+                                e.consume ();
+                            }
+                        }
+                    }
+                }
+            });
 
-        jButton5.setAction(new SaveAsAction ());
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/filesaveas.png")));
-        jButton5.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Save_As..."));
-        jButton5.setBorderPainted(false);
-        jButton5.setMargin(null);
-        jButton5.setMaximumSize(new java.awt.Dimension(28, 28));
-        jButton5.setMinimumSize(new java.awt.Dimension(22, 22));
-        jButton5.setOpaque(false);
-        jButton5.setPreferredSize(new java.awt.Dimension(30, 30));
-        mainToolbar.add(jButton5);
+            jScrollPane5.setViewportView(keysTreeTable);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.weighty = 1.0;
-        jPanel5.add(mainToolbar, gridBagConstraints);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel1.add(jScrollPane5, gridBagConstraints);
 
-        mainToolbar1.setFloatable(false);
-        mainToolbar1.setRollover(true);
-        mainToolbar1.setPreferredSize(new java.awt.Dimension(164, 34));
-        javax.help.CSH.setHelpIDString (mainToolbar1, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
+            jTabbedPane1.addTab("tab2", jPanel1);
 
-        jButton6.setAction(getActionByName(DefaultEditorKit.cutAction));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editcut.png")));
-        jButton6.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Cut+SHORTCUT"));
-        jButton6.setBorderPainted(false);
-        jButton6.setMargin(null);
-        jButton6.setMinimumSize(new java.awt.Dimension(22, 22));
-        jButton6.setOpaque(false);
-        jButton6.setPreferredSize(new java.awt.Dimension(30, 30));
-        jButton6.setText (null);
-        mainToolbar1.add(jButton6);
+            mainPanel.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
-        jButton7.setAction(getActionByName(DefaultEditorKit.copyAction));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editcopy.png")));
-        jButton7.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Copy+SHORTCUT"));
-        jButton7.setBorderPainted(false);
-        jButton7.setMargin(null);
-        jButton7.setMinimumSize(new java.awt.Dimension(22, 22));
-        jButton7.setOpaque(false);
-        jButton7.setPreferredSize(new java.awt.Dimension(30, 30));
-        jButton7.setText (null);
-        mainToolbar1.add(jButton7);
+            jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        jButton8.setAction(getActionByName(DefaultEditorKit.pasteAction));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editpaste.png")));
-        jButton8.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Paste+SHORTCUT"));
-        jButton8.setBorderPainted(false);
-        jButton8.setMargin(null);
-        jButton8.setMinimumSize(new java.awt.Dimension(22, 22));
-        jButton8.setOpaque(false);
-        jButton8.setPreferredSize(new java.awt.Dimension(30, 30));
-        jButton8.setText (null);
-        mainToolbar1.add(jButton8);
+            mainToolbar.setFloatable(false);
+            mainToolbar.setRollover(true);
+            javax.help.CSH.setHelpIDString (mainToolbar, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
 
-        jButton9.setAction(getActionByName(DefaultEditorKit.deleteNextCharAction));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editdelete.png")));
-        jButton9.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Delete"));
-        jButton9.setBorderPainted(false);
-        jButton9.setMargin(null);
-        jButton9.setMinimumSize(new java.awt.Dimension(22, 22));
-        jButton9.setOpaque(false);
-        jButton9.setPreferredSize(new java.awt.Dimension(30, 30));
-        jButton9.setText (null);
-        mainToolbar1.add(jButton9);
+            jButton1.setAction(new NewBundleAction ());
+            jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/filenew.png")));
+            jButton1.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("NewToolbuttonTooltip+SHORTCUT"));
+            jButton1.setBorderPainted(false);
+            jButton1.setMargin(null);
+            jButton1.setMaximumSize(new java.awt.Dimension(28, 28));
+            jButton1.setMinimumSize(new java.awt.Dimension(22, 22));
+            jButton1.setOpaque(false);
+            jButton1.setPreferredSize(new java.awt.Dimension(30, 30));
+            mainToolbar.add(jButton1);
 
-        undoButton.setAction(_context.getUndoManager ().getUndoAction());
-        undoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/undo.png")));
-        undoButton.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Undo+SHORTCUT"));
-        undoButton.setBorderPainted(false);
-        undoButton.setMargin(null);
-        undoButton.setMaximumSize(new java.awt.Dimension(28, 28));
-        undoButton.setMinimumSize(new java.awt.Dimension(22, 22));
-        undoButton.setOpaque(false);
-        undoButton.setPreferredSize(new java.awt.Dimension(30, 30));
-        /* mantiene nascosto il testo  dell'action */
-        undoButton.setText (null);
-        undoButton.putClientProperty ("hideActionText", Boolean.TRUE);
-        mainToolbar1.add(undoButton);
+            jButton2.setAction(new OpenAction ());
+            jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/fileopen.png")));
+            jButton2.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Open...+SHORTCUT"));
+            jButton2.setBorderPainted(false);
+            jButton2.setMargin(null);
+            jButton2.setMaximumSize(new java.awt.Dimension(28, 28));
+            jButton2.setMinimumSize(new java.awt.Dimension(22, 22));
+            jButton2.setOpaque(false);
+            jButton2.setPreferredSize(new java.awt.Dimension(30, 30));
+            mainToolbar.add(jButton2);
 
-        redoButton.setAction(_context.getUndoManager ().getRedoAction());
-        redoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/redo.png")));
-        redoButton.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Redo+SHORTCUT"));
-        redoButton.setBorderPainted(false);
-        redoButton.setMargin(null);
-        redoButton.setMaximumSize(new java.awt.Dimension(28, 28));
-        redoButton.setMinimumSize(new java.awt.Dimension(22, 22));
-        redoButton.setOpaque(false);
-        redoButton.setPreferredSize(new java.awt.Dimension(30, 30));
-        /* mantiene nascosto il testo  dell'action */
-        redoButton.setText (null);
-        redoButton.putClientProperty ("hideActionText", Boolean.TRUE);
-        mainToolbar1.add(redoButton);
+            jButton3.setAction(saveAction);
+            jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/filesave.png")));
+            jButton3.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Save...+SHORTCUT"));
+            jButton3.setBorderPainted(false);
+            jButton3.setMargin(null);
+            jButton3.setMaximumSize(new java.awt.Dimension(28, 28));
+            jButton3.setMinimumSize(new java.awt.Dimension(22, 22));
+            jButton3.setOpaque(false);
+            jButton3.setPreferredSize(new java.awt.Dimension(30, 30));
+            mainToolbar.add(jButton3);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.weighty = 1.0;
-        jPanel5.add(mainToolbar1, gridBagConstraints);
+            jButton5.setAction(new SaveAsAction ());
+            jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/filesaveas.png")));
+            jButton5.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Save_As..."));
+            jButton5.setBorderPainted(false);
+            jButton5.setMargin(null);
+            jButton5.setMaximumSize(new java.awt.Dimension(28, 28));
+            jButton5.setMinimumSize(new java.awt.Dimension(22, 22));
+            jButton5.setOpaque(false);
+            jButton5.setPreferredSize(new java.awt.Dimension(30, 30));
+            mainToolbar.add(jButton5);
 
-        mainToolbar2.setFloatable(false);
-        mainToolbar2.setRollover(true);
-        javax.help.CSH.setHelpIDString (mainToolbar2, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.weighty = 1.0;
+            jPanel5.add(mainToolbar, gridBagConstraints);
 
-        _context.getHelpManager ().initialize (helpButton);
-        helpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/contents.png")));
-        helpButton.setBorderPainted(false);
-        helpButton.setOpaque(false);
-        /* mantiene nascosto il testo  dell'action */
-        redoButton.setText (null);
-        redoButton.putClientProperty ("hideActionText", Boolean.TRUE);
-        mainToolbar2.add(helpButton);
+            mainToolbar1.setFloatable(false);
+            mainToolbar1.setRollover(true);
+            mainToolbar1.setPreferredSize(new java.awt.Dimension(164, 34));
+            javax.help.CSH.setHelpIDString (mainToolbar1, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel5.add(mainToolbar2, gridBagConstraints);
+            jButton6.setAction(getActionByName(DefaultEditorKit.cutAction));
+            jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editcut.png")));
+            jButton6.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Cut+SHORTCUT"));
+            jButton6.setBorderPainted(false);
+            jButton6.setMargin(null);
+            jButton6.setMaximumSize(new java.awt.Dimension(28, 28));
+            jButton6.setMinimumSize(new java.awt.Dimension(22, 22));
+            jButton6.setOpaque(false);
+            jButton6.setPreferredSize(new java.awt.Dimension(30, 30));
+            jButton6.setText (null);
+            mainToolbar1.add(jButton6);
 
-        mainPanel.add(jPanel5, java.awt.BorderLayout.NORTH);
+            jButton7.setAction(getActionByName(DefaultEditorKit.copyAction));
+            jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editcopy.png")));
+            jButton7.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Copy+SHORTCUT"));
+            jButton7.setBorderPainted(false);
+            jButton7.setMargin(null);
+            jButton7.setMaximumSize(new java.awt.Dimension(29, 28));
+            jButton7.setMinimumSize(new java.awt.Dimension(22, 22));
+            jButton7.setOpaque(false);
+            jButton7.setPreferredSize(new java.awt.Dimension(30, 30));
+            jButton7.setText (null);
+            mainToolbar1.add(jButton7);
 
-        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
+            jButton8.setAction(getActionByName(DefaultEditorKit.pasteAction));
+            jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editpaste.png")));
+            jButton8.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Paste+SHORTCUT"));
+            jButton8.setBorderPainted(false);
+            jButton8.setMargin(null);
+            jButton8.setMaximumSize(new java.awt.Dimension(28, 28));
+            jButton8.setMinimumSize(new java.awt.Dimension(22, 22));
+            jButton8.setOpaque(false);
+            jButton8.setPreferredSize(new java.awt.Dimension(30, 30));
+            jButton8.setText (null);
+            mainToolbar1.add(jButton8);
 
-        menuBar.setFont(new java.awt.Font("Dialog", 0, 12));
-        org.openide.awt.Mnemonics.setLocalizedText(fileMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&File"));
-        fileMenu.setFont(new java.awt.Font("Dialog", 0, 12));
-        newMenuItem.setAction(new NewBundleAction ());
-        newMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        org.openide.awt.Mnemonics.setLocalizedText(newMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&New"));
-        newMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newMenuItemActionPerformed(evt);
-            }
-        });
+            jButton9.setAction(getActionByName(DefaultEditorKit.deleteNextCharAction));
+            jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editdelete.png")));
+            jButton9.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Delete"));
+            jButton9.setBorderPainted(false);
+            jButton9.setMargin(null);
+            jButton9.setMaximumSize(new java.awt.Dimension(28, 28));
+            jButton9.setMinimumSize(new java.awt.Dimension(22, 22));
+            jButton9.setOpaque(false);
+            jButton9.setPreferredSize(new java.awt.Dimension(30, 30));
+            jButton9.setText (null);
+            mainToolbar1.add(jButton9);
 
-        fileMenu.add(newMenuItem);
+            undoButton.setAction(_context.getUndoManager ().getUndoAction());
+            undoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/undo.png")));
+            undoButton.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Undo+SHORTCUT"));
+            undoButton.setBorderPainted(false);
+            undoButton.setMargin(null);
+            undoButton.setMaximumSize(new java.awt.Dimension(28, 28));
+            undoButton.setMinimumSize(new java.awt.Dimension(22, 22));
+            undoButton.setOpaque(false);
+            undoButton.setPreferredSize(new java.awt.Dimension(30, 30));
+            /* mantiene nascosto il testo  dell'action */
+            undoButton.setText (null);
+            undoButton.putClientProperty ("hideActionText", Boolean.TRUE);
+            mainToolbar1.add(undoButton);
 
-        openMenuItem.setAction(new OpenAction ());
-        openMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        org.openide.awt.Mnemonics.setLocalizedText(openMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Open"));
-        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openMenuItemActionPerformed(evt);
-            }
-        });
+            redoButton.setAction(_context.getUndoManager ().getRedoAction());
+            redoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/redo.png")));
+            redoButton.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Redo+SHORTCUT"));
+            redoButton.setBorderPainted(false);
+            redoButton.setMargin(null);
+            redoButton.setMaximumSize(new java.awt.Dimension(28, 28));
+            redoButton.setMinimumSize(new java.awt.Dimension(22, 22));
+            redoButton.setOpaque(false);
+            redoButton.setPreferredSize(new java.awt.Dimension(30, 30));
+            /* mantiene nascosto il testo  dell'action */
+            redoButton.setText (null);
+            redoButton.putClientProperty ("hideActionText", Boolean.TRUE);
+            mainToolbar1.add(redoButton);
 
-        fileMenu.add(openMenuItem);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.weighty = 1.0;
+            jPanel5.add(mainToolbar1, gridBagConstraints);
 
-        recentMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/transparent.png")));
-        org.openide.awt.Mnemonics.setLocalizedText(recentMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Recent"));
-        recentMenu.setFont(new java.awt.Font("Dialog", 0, 12));
-        fileMenu.add(recentMenu);
+            mainToolbar2.setFloatable(false);
+            mainToolbar2.setRollover(true);
+            javax.help.CSH.setHelpIDString (mainToolbar2, _context.getHelpManager ().getResolver ().resolveHelpID (HelpResources.MAIN_TOOLBAR ));
 
-        fileMenu.add(jSeparator2);
+            _context.getHelpManager ().initialize (helpButton);
+            helpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/contents.png")));
+            helpButton.setBorderPainted(false);
+            helpButton.setMargin(null);
+            helpButton.setMaximumSize(new java.awt.Dimension(28, 28));
+            helpButton.setMinimumSize(new java.awt.Dimension(22, 22));
+            helpButton.setOpaque(false);
+            helpButton.setPreferredSize(new java.awt.Dimension(30, 30));
+            /* mantiene nascosto il testo  dell'action */
+            redoButton.setText (null);
+            redoButton.putClientProperty ("hideActionText", Boolean.TRUE);
+            mainToolbar2.add(helpButton);
 
-        saveMenuItem.setAction(saveAction);
-        saveMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        org.openide.awt.Mnemonics.setLocalizedText(saveMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Save"));
-        _context.getModel ().addPropertyChangeListener (saveAction);
-        fileMenu.add(saveMenuItem);
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 1.0;
+            jPanel5.add(mainToolbar2, gridBagConstraints);
 
-        saveAsMenuItem.setAction(new SaveAsAction ());
-        saveAsMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        org.openide.awt.Mnemonics.setLocalizedText(saveAsMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Save_&As_..."));
-        saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveAsMenuItemActionPerformed(evt);
-            }
-        });
+            mainPanel.add(jPanel5, java.awt.BorderLayout.NORTH);
 
-        fileMenu.add(saveAsMenuItem);
+            getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
 
-        fileMenu.add(jSeparator3);
+            menuBar.setFont(new java.awt.Font("Dialog", 0, 12));
+            org.openide.awt.Mnemonics.setLocalizedText(fileMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&File"));
+            fileMenu.setFont(new java.awt.Font("Dialog", 0, 12));
+            newMenuItem.setAction(new NewBundleAction ());
+            newMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            org.openide.awt.Mnemonics.setLocalizedText(newMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&New"));
+            newMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    newMenuItemActionPerformed(evt);
+                }
+            });
 
-        exitMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        exitMenuItem.setIcon(new javax.swing.ImageIcon("/usr/local/share/devel/swdev/resourcebundleeditor/src/java/com/davidecavestro/rbe/gui/images/transparent.png"));
-        org.openide.awt.Mnemonics.setLocalizedText(exitMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("E&xit"));
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
-            }
-        });
+            fileMenu.add(newMenuItem);
 
-        fileMenu.add(exitMenuItem);
+            openMenuItem.setAction(new OpenAction ());
+            openMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            org.openide.awt.Mnemonics.setLocalizedText(openMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Open"));
+            openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    openMenuItemActionPerformed(evt);
+                }
+            });
 
-        menuBar.add(fileMenu);
+            fileMenu.add(openMenuItem);
 
-        org.openide.awt.Mnemonics.setLocalizedText(editMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Edit"));
-        editMenu.setFont(new java.awt.Font("Dialog", 0, 12));
-        undoMenuItem.setAction(_context.getUndoManager ().getUndoAction());
-        undoMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        undoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/undo.png")));
-        undoMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                undoMenuItemActionPerformed(evt);
-            }
-        });
+            recentMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/transparent.png")));
+            org.openide.awt.Mnemonics.setLocalizedText(recentMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Recent"));
+            recentMenu.setFont(new java.awt.Font("Dialog", 0, 12));
+            fileMenu.add(recentMenu);
 
-        editMenu.add(undoMenuItem);
+            fileMenu.add(jSeparator2);
 
-        redoMenuItem.setAction(_context.getUndoManager ().getRedoAction());
-        redoMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        redoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/redo.png")));
-        editMenu.add(redoMenuItem);
+            saveMenuItem.setAction(saveAction);
+            saveMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            org.openide.awt.Mnemonics.setLocalizedText(saveMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Save"));
+            _context.getModel ().addPropertyChangeListener (saveAction);
+            fileMenu.add(saveMenuItem);
 
-        editMenu.add(jSeparator4);
+            saveAsMenuItem.setAction(new SaveAsAction ());
+            saveAsMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            org.openide.awt.Mnemonics.setLocalizedText(saveAsMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Save_&As_..."));
+            saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    saveAsMenuItemActionPerformed(evt);
+                }
+            });
 
-        cutMenuItem.setAction(getActionByName(DefaultEditorKit.cutAction));
-        cutMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        cutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editcut.png")));
-        org.openide.awt.Mnemonics.setLocalizedText(cutMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Cu&t"));
-        cutMenuItem.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Cut"));
-        editMenu.add(cutMenuItem);
+            fileMenu.add(saveAsMenuItem);
 
-        copyMenuItem.setAction(getActionByName(DefaultEditorKit.copyAction));
-        copyMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        copyMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editcopy.png")));
-        org.openide.awt.Mnemonics.setLocalizedText(copyMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Copy"));
-        copyMenuItem.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Copy"));
-        editMenu.add(copyMenuItem);
+            fileMenu.add(jSeparator3);
 
-        pasteMenuItem.setAction(getActionByName(DefaultEditorKit.pasteAction));
-        pasteMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        pasteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editpaste.png")));
-        org.openide.awt.Mnemonics.setLocalizedText(pasteMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Paste"));
-        pasteMenuItem.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Paste"));
-        editMenu.add(pasteMenuItem);
+            exitMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            exitMenuItem.setIcon(new javax.swing.ImageIcon("/usr/local/share/devel/swdev/resourcebundleeditor/src/java/com/davidecavestro/rbe/gui/images/transparent.png"));
+            org.openide.awt.Mnemonics.setLocalizedText(exitMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("E&xit"));
+            exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    exitMenuItemActionPerformed(evt);
+                }
+            });
 
-        deleteMenuItem.setAction(getActionByName(DefaultEditorKit.deleteNextCharAction));
-        deleteMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        deleteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editdelete.png")));
-        org.openide.awt.Mnemonics.setLocalizedText(deleteMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Delete"));
-        deleteMenuItem.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Delete"));
-        editMenu.add(deleteMenuItem);
+            fileMenu.add(exitMenuItem);
 
-        editMenu.add(jSeparator5);
+            menuBar.add(fileMenu);
 
-        findMenuItem.setAction(_findAction);
-        findMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        findMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/transparent.png")));
-        org.openide.awt.Mnemonics.setLocalizedText(findMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Find"));
-        editMenu.add(findMenuItem);
+            org.openide.awt.Mnemonics.setLocalizedText(editMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Edit"));
+            editMenu.setFont(new java.awt.Font("Dialog", 0, 12));
+            undoMenuItem.setAction(_context.getUndoManager ().getUndoAction());
+            undoMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            undoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/undo.png")));
+            undoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    undoMenuItemActionPerformed(evt);
+                }
+            });
 
-        menuBar.add(editMenu);
+            editMenu.add(undoMenuItem);
 
-        org.openide.awt.Mnemonics.setLocalizedText(toolsMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Tools"));
-        toolsMenu.setFont(new java.awt.Font("Dialog", 0, 12));
-        logConsoleMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        org.openide.awt.Mnemonics.setLocalizedText(logConsoleMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Log_console"));
-        logConsoleMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logConsoleMenuItemActionPerformed(evt);
-            }
-        });
+            redoMenuItem.setAction(_context.getUndoManager ().getRedoAction());
+            redoMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            redoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/redo.png")));
+            editMenu.add(redoMenuItem);
 
-        toolsMenu.add(logConsoleMenuItem);
+            editMenu.add(jSeparator4);
 
-        optionsMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        org.openide.awt.Mnemonics.setLocalizedText(optionsMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Options"));
-        optionsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optionsMenuItemActionPerformed(evt);
-            }
-        });
+            cutMenuItem.setAction(getActionByName(DefaultEditorKit.cutAction));
+            cutMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            cutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editcut.png")));
+            org.openide.awt.Mnemonics.setLocalizedText(cutMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Cu&t"));
+            cutMenuItem.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Cut"));
+            editMenu.add(cutMenuItem);
 
-        toolsMenu.add(optionsMenuItem);
+            copyMenuItem.setAction(getActionByName(DefaultEditorKit.copyAction));
+            copyMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            copyMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editcopy.png")));
+            org.openide.awt.Mnemonics.setLocalizedText(copyMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Copy"));
+            copyMenuItem.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Copy"));
+            editMenu.add(copyMenuItem);
 
-        menuBar.add(toolsMenu);
+            pasteMenuItem.setAction(getActionByName(DefaultEditorKit.pasteAction));
+            pasteMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            pasteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editpaste.png")));
+            org.openide.awt.Mnemonics.setLocalizedText(pasteMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Paste"));
+            pasteMenuItem.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Paste"));
+            editMenu.add(pasteMenuItem);
 
-        org.openide.awt.Mnemonics.setLocalizedText(helpMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Help"));
-        helpMenu.setFont(new java.awt.Font("Dialog", 0, 12));
-        _context.getHelpManager ().initialize (contentsMenuItem);
-        contentsMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        contentsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/contents.png")));
-        contentsMenuItem.setText("Contents");
-        contentsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contentsMenuItemActionPerformed(evt);
-            }
-        });
+            deleteMenuItem.setAction(getActionByName(DefaultEditorKit.deleteNextCharAction));
+            deleteMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            deleteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/editdelete.png")));
+            org.openide.awt.Mnemonics.setLocalizedText(deleteMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Delete"));
+            deleteMenuItem.setToolTipText(java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Delete"));
+            editMenu.add(deleteMenuItem);
 
-        helpMenu.add(contentsMenuItem);
+            editMenu.add(jSeparator5);
 
-        contextHelpMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        contextHelpMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/contexthelp.png")));
-        contextHelpMenuItem.setText("Item");
-        contextHelpMenuItem.addActionListener (new CSH.DisplayHelpAfterTracking (_context.getHelpManager ().getMainHelpBroker ()));
-        helpMenu.add(contextHelpMenuItem);
+            findMenuItem.setAction(_findAction);
+            findMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            findMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/transparent.png")));
+            org.openide.awt.Mnemonics.setLocalizedText(findMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Find"));
+            editMenu.add(findMenuItem);
 
-        helpMenu.add(jSeparator7);
+            menuBar.add(editMenu);
 
-        aboutMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
-        aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/info.png")));
-        aboutMenuItem.setText("About");
-        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItemActionPerformed(evt);
-            }
-        });
+            org.openide.awt.Mnemonics.setLocalizedText(toolsMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Tools"));
+            toolsMenu.setFont(new java.awt.Font("Dialog", 0, 12));
+            logConsoleMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            org.openide.awt.Mnemonics.setLocalizedText(logConsoleMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("Log_console"));
+            logConsoleMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    logConsoleMenuItemActionPerformed(evt);
+                }
+            });
 
-        helpMenu.add(aboutMenuItem);
+            toolsMenu.add(logConsoleMenuItem);
 
-        menuBar.add(helpMenu);
+            optionsMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            org.openide.awt.Mnemonics.setLocalizedText(optionsMenuItem, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Options"));
+            optionsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    optionsMenuItemActionPerformed(evt);
+                }
+            });
 
-        setJMenuBar(menuBar);
+            toolsMenu.add(optionsMenuItem);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-800)/2, (screenSize.height-600)/2, 800, 600);
-    }// </editor-fold>//GEN-END:initComponents
+            menuBar.add(toolsMenu);
+
+            org.openide.awt.Mnemonics.setLocalizedText(helpMenu, java.util.ResourceBundle.getBundle("com.davidecavestro.rbe.gui.res").getString("&Help"));
+            helpMenu.setFont(new java.awt.Font("Dialog", 0, 12));
+            _context.getHelpManager ().initialize (contentsMenuItem);
+            contentsMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            contentsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/contents.png")));
+            contentsMenuItem.setText("Contents");
+            contentsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    contentsMenuItemActionPerformed(evt);
+                }
+            });
+
+            helpMenu.add(contentsMenuItem);
+
+            contextHelpMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            contextHelpMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/contexthelp.png")));
+            contextHelpMenuItem.setText("Item");
+            contextHelpMenuItem.addActionListener (new CSH.DisplayHelpAfterTracking (_context.getHelpManager ().getMainHelpBroker ()));
+            helpMenu.add(contextHelpMenuItem);
+
+            helpMenu.add(jSeparator7);
+
+            aboutMenuItem.setFont(new java.awt.Font("Dialog", 0, 12));
+            aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/davidecavestro/rbe/gui/images/info.png")));
+            aboutMenuItem.setText("About");
+            aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    aboutMenuItemActionPerformed(evt);
+                }
+            });
+
+            helpMenu.add(aboutMenuItem);
+
+            menuBar.add(helpMenu);
+
+            setJMenuBar(menuBar);
+
+            java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            setBounds((screenSize.width-800)/2, (screenSize.height-600)/2, 800, 600);
+        }// </editor-fold>//GEN-END:initComponents
 
 	private void optionsMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsMenuItemActionPerformed
 		_context.getWindowManager().getOptionsDialog().show();
@@ -1509,6 +1563,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1517,6 +1572,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1524,7 +1580,9 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField keyTextField;
+    private org.jdesktop.swingx.JXTreeTable keysTreeTable;
     private javax.swing.JPopupMenu localePopupMenu;
     private javax.swing.JMenuItem logConsoleMenuItem;
     private javax.swing.JPanel mainPanel;
@@ -1624,11 +1682,11 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 		}
 		
 		public int getColumnCount () {
-			return this._resources.getLocales ().length+1;
+			return _locales.length+1;
 		}
 		
 		public int getRowCount () {
-			return this._resources.getKeySet ().size ();
+			return _keys.length;
 		}
 		
 		public Object getValueAt (int rowIndex, int columnIndex) {
@@ -2347,6 +2405,11 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 	 * Carica il bundle da file.
 	 */
 	private void load (final File f){
+		if (!f.exists ()) {
+			return;
+		}
+//		_context.getModel ().load (f);
+		
 		final SwingWorker worker = new VisibleWorker("loading") {
 			public void work() {
 				try {
@@ -2360,6 +2423,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 		
 		_context.getLogger().info ("loading bundle...");
 		worker.start ();
+		
 		((JXTable)valuesTable).packAll ();
 
 	}
@@ -2438,7 +2502,10 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 					openFile (new File (recentPaths[ix]));
 				}
 			});
-			item.setText (recentPaths[ix]);
+			final StringBuffer sb = new StringBuffer ();
+			final File f = new File (recentPaths[ix]);
+			sb.append (getPropertiesName (f)).append (" [").append (f.getParent ()).append ("]");
+			item.setText (sb.toString ());
 //			item.setMaximumSize (new Dimension (MainWindow.this.getWidth ()/3, 1000));
 			recentMenu.add (item);
 		}
@@ -2559,13 +2626,18 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 		}
 		
 		private void forceTableRepaint (){
-			valuesTable.tableChanged (new TableModelEvent (
-			valuesTable.getModel (),
-			0,
-			valuesTable.getModel ().getRowCount ()-1,
-			TableModelEvent.ALL_COLUMNS,
-			TableModelEvent.UPDATE)
-			);
+			forceTableRepaint (valuesTable);
+			forceTableRepaint (keysTreeTable);
+		}
+		private void forceTableRepaint (JTable t){
+			t.tableChanged (new TableModelEvent (
+				t.getModel (),
+				0,
+				t.getModel ().getRowCount ()-1,
+				TableModelEvent.ALL_COLUMNS,
+				TableModelEvent.UPDATE)
+				);
+			
 		}
 		
 		public boolean match (String s){
@@ -2621,11 +2693,20 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 		}
 		
 		private void nextMatch (Matcher m, boolean backward) {
-			final int rowCount = valuesTable.getRowCount ();
-			final int columnCount = valuesTable.getColumnCount ();
+			if (valuesTable.isShowing ()) {
+				nextMatch (m, backward, valuesTable);
+			}
+			if (keysTreeTable.isShowing ()) {
+				nextMatch (m, backward, keysTreeTable);
+			}
+		}
+		
+		private void nextMatch (Matcher m, boolean backward, final JTable table) {
+			final int rowCount = table.getRowCount ();
+			final int columnCount = table.getColumnCount ();
 			
-			int rowIdx = valuesTable.getSelectedRow ();
-			final int colIdx = valuesTable.getSelectedColumn ();
+			int rowIdx = table.getSelectedRow ();
+			final int colIdx = table.getSelectedColumn ();
 			
 			final String pattern = matchcase?p:p.toLowerCase ();
 			
@@ -2634,7 +2715,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 				 * l'editor con la selezione
 				 */
 				
-				final Component editor = valuesTable.getEditorComponent ();
+				final Component editor = table.getEditorComponent ();
 				if (editor != null){
 					final JTextField textEditor = (JTextField)editor;
 					if (textEditor.hasFocus ()/*getSelectedText ()!=null && textEditor.getSelectedText ().length ()>0*/){
@@ -2696,7 +2777,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 				final int r = t / columnCount;
 				final int c = t % columnCount;
 				
-				final String modelValue = (String)valuesTable.getValueAt (r, c);
+				final String modelValue = (String)table.getValueAt (r, c);
 				
 				if (m.match (modelValue)){
 
@@ -2705,17 +2786,17 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 						modelValue:
 						modelValue.toLowerCase ();
 				
-					valuesTable.scrollRectToVisible (valuesTable.getCellRect (r, c, true));
-					valuesTable.getCellEditor (r, c).cancelCellEditing ();
+					table.scrollRectToVisible (table.getCellRect (r, c, true));
+					table.getCellEditor (r, c).cancelCellEditing ();
 					
-					valuesTable.getSelectionModel ().setSelectionInterval (r, r);
-					valuesTable.getColumnModel ().getSelectionModel ().setSelectionInterval (c, c);
+					table.getSelectionModel ().setSelectionInterval (r, r);
+					table.getColumnModel ().getSelectionModel ().setSelectionInterval (c, c);
 					
-					valuesTable.editCellAt (r, c);
+					table.editCellAt (r, c);
 					
 					final int selectionStart = backward?value.lastIndexOf (pattern):value.indexOf (pattern);
 					final int selectionEnd = selectionStart + pattern.length ();
-					final Component editor = valuesTable.getEditorComponent ();
+					final Component editor = table.getEditorComponent ();
 					if (editor != null){
 						final JTextField textField = (JTextField)editor;
 						if (textField.getText ()==null || !textField.getText ().equals (modelValue)){
@@ -2730,7 +2811,7 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 						}
 						SwingUtilities.invokeLater (new Runnable () {
 							public void run () {
-								valuesTable.editCellAt (r, c);
+								table.editCellAt (r, c);
 					
 								editor.requestFocusInWindow ();
 //								button.requestFocus ();
@@ -3031,4 +3112,396 @@ public class MainWindow extends javax.swing.JFrame implements PersistentComponen
 		}
 	}
 	
+	private JXTreeTable createKeysTreeTable () {
+		
+		return new KeysTreeTable ();
+	}
+	
+	
+	private class KeysTreeTable extends JXTreeTable {
+		
+		public KeysTreeTable () {
+			super ();
+//			setTreeTableModel (new KeysTreeTableModel ());
+		}
+		
+		public KeysTreeTableModel createModel () {
+			return new KeysTreeTableModel ();
+		}
+		/**
+		 * Classe di modello per l'albero delle chiavi
+		 */
+		private class KeysTreeTableModel extends DefaultTreeTableModel implements ResourceBundleModelListener, PropertyChangeListener {
+			
+			
+			private final SortedMap<String, StringTreeNode> _nodesMap = new TreeMap<String, StringTreeNode> ();
+//				final StringTreeNode root = ;
+			final String splitter = "_";
+			
+			private final static int TREE_COLUMN_INDEX = 0;
+			private final static int KEY_COLUMN_INDEX = 1;
+			
+			final DefaultResourceBundleModel _resources = _context.getModel ();
+			
+			public KeysTreeTableModel () {
+				super (new StringTreeNode ("", ""));
+				_resources.addResourceBundleModelListener (this);
+				reload ();
+			}
+			
+			Locale[] _locales;
+			List<String> _keys = new ArrayList<String> ();
+			
+			@Override
+			public void reload () {
+				_locales = _resources.getLocales ();
+				_keys.clear ();
+				_keys.addAll (_resources.getKeySet ());
+				
+				getRoot ().removeAllChildren ();
+				_nodesMap.clear ();
+				for (final String key : _keys) {
+					final String[] splitted = key.split (splitter);
+					evaluate (getRoot (), splitted[0], splitted, splitter);
+				}
+				
+//					setRoot (root);
+//					KeysTreeTable.this.createDefaultColumnsFromModel ();
+//					KeysTreeTable.this.setTreeTableModel (this);
+				/**
+				 * @workaround si casta per accedere ai metodi del modello della tabella
+				 */
+//				SwingUtilities.invokeLater (new Runnable () {
+//					public void run () {
+						((AbstractTableModel)getModel ()).fireTableStructureChanged ();
+						fireTreeStructureChanged (this, new Object[]{getRoot ()}, new int[0], new Object[0]);
+//					}
+//				});
+			}
+			
+			private StringTreeNode evaluate (final StringTreeNode parentNode, final String key, final String[] splitted, final String splitter) {
+				StringTreeNode currentNode = _nodesMap.get (key);
+				
+				if (currentNode == null) {
+					currentNode = new StringTreeNode (splitted[0], key);
+					parentNode.add (currentNode);
+					_nodesMap.put (key, currentNode);
+				}
+				
+				if (splitted.length>1) {
+					final String[] remaining = new String[splitted.length-1];
+					System.arraycopy (splitted, 1, remaining, 0, remaining.length);
+					evaluate (currentNode, key + splitter + remaining[0], remaining, splitter);
+				}
+				return currentNode;
+			}
+			
+			public void resourceBundleChanged (ResourceBundleModelEvent e){
+				
+				if (e.getLocale ()==ResourceBundleModelEvent.ALL_LOCALES){
+					reload ();
+					return;
+				} else if (e.getKeys ()==ResourceBundleModelEvent.ALL_KEYS){
+					reload ();
+					return;
+				}
+				
+				String[] keys = e.getKeys ();
+				if (e.getType ()==ResourceBundleModelEvent.INSERT){
+					reload ();
+//						fireTreeNodesInserted (e.getLocale (), new Object[]{this.getRoot (), e.getLocale ()}, getIndexes (_localeKeys, _keys), _keys);
+				} else if (e.getType ()==ResourceBundleModelEvent.DELETE){
+					reload ();
+//		//				String[] localeKeys = (String[])this._model.getLocaleKeys (l).toArray (voidStringArray);
+					//				String[] oldLocaleKeys = new String[localeKeys.length+keys.length];
+					//				System.arraycopy (localeKeys, 0, oldLocaleKeys, 0, localeKeys.length);
+					//				System.arraycopy (keys, 0, oldLocaleKeys, localeKeys.length, keys.length);
+					//				Arrays.sort (oldLocaleKeys);
+					//
+					//				this.fireTreeNodesRemoved (e.getLocale (), new Object[]{this.getRoot (), e.getLocale ()}, getIndexes (oldLocaleKeys, keys), keys);
+					
+				}
+				
+			}
+			
+			public void propertyChange (PropertyChangeEvent evt) {
+			}
+			
+			/**
+			 * Imposta il valore nel modello della tabella, propagandolo al modello applicativo.
+			 */
+			@Override
+			public void setValueAt (Object aValue, Object node, int columnIndex) {
+				
+				int rowIndex = _keys.indexOf (((StringTreeNode)node).getCompleteKey ());
+				final String key = _keys.get (rowIndex);
+				if (columnIndex > 1){
+					final Locale l = this._locales[columnIndex-2];
+					if (null==aValue){
+						if (this._resources.getLocales (key).size ()==1){
+							if (
+								JOptionPane.showConfirmDialog (
+								MainWindow.this,
+								StringUtils.toStringArray (
+								ResourceBundle.getBundle ("com.davidecavestro.rbe.gui.res").getString ("This_will_cause_key_removal._Continue?")
+								),
+								ResourceBundle.getBundle ("com.davidecavestro.rbe.gui.res").getString ("Confirm"),
+								JOptionPane.OK_CANCEL_OPTION
+								)!=JOptionPane.OK_OPTION){
+								return;
+							}
+						}
+					}
+					
+					this._resources.setValue (l, key, (String)aValue);
+				} else {
+					this._resources.changeKey ((String)getValueAt (rowIndex, columnIndex), (String)aValue);
+				}
+				
+			}
+			
+			
+			@Override
+			public boolean isCellEditable (Object node, int column) {
+				switch (column) {
+					case TREE_COLUMN_INDEX: {
+						return false;
+					}
+					case KEY_COLUMN_INDEX: {
+						return false;
+					}
+					default: {
+						return true;
+					}
+				}
+			}
+			
+			@Override
+			public String getColumnName (int column) {
+				switch (column) {
+					case TREE_COLUMN_INDEX: {
+						return ResourceBundle.getBundle ("com.davidecavestro.rbe.gui.res").getString ("Keys_tree");
+					}
+					case KEY_COLUMN_INDEX: {
+						return ResourceBundle.getBundle ("com.davidecavestro.rbe.gui.res").getString ("Complete_key");
+					}
+					default: {
+						if (_locales==null || _locales.length==0) {
+							return null;
+						}
+						final Locale locale = this._locales[column-2];
+						if (locale==LocalizationProperties.DEFAULT) {
+							return ResourceBundle.getBundle ("com.davidecavestro.rbe.gui.res").getString ("Default");
+						} else {
+							return locale.toString ();
+						}
+					}
+				}
+			}
+			
+			@Override
+			public Class getColumnClass (int column) {
+				
+				switch (column) {
+					case TREE_COLUMN_INDEX: {
+						return super.getColumnClass (column);
+					}
+					case KEY_COLUMN_INDEX: {
+						return String.class;
+					}
+					default: {
+						return String.class;
+					}
+				}
+			}
+			
+			@Override
+			public int getColumnCount () {
+				return _locales.length + 2;
+			}
+			
+			@Override
+			public Object getValueAt (Object node, int column) {
+				switch (column) {
+					case TREE_COLUMN_INDEX: {
+						return super.getValueAt (node, column);
+					}
+					case KEY_COLUMN_INDEX: {
+						return ((StringTreeNode)node).getCompleteKey ();
+					}
+					default: {
+						return _context.getModel ().getValue (_locales[column-2], ((StringTreeNode)node).getCompleteKey ());
+					}
+				}
+			}
+			
+			@Override
+			public StringTreeNode getRoot () {
+				return (StringTreeNode)super.getRoot ();
+				
+			}
+		}
+	}
+
+	
+	
+	
+	static class StringTreeNode extends DefaultMutableTreeNode {
+		
+		private List<String> _childrenKeys = new ArrayList<String> ();
+		
+		private final String _keyPortion;
+		private final String _completeKey;
+		
+		public StringTreeNode (final String key, final String completeKey ) {
+			super (key);
+			_keyPortion = key;
+			_completeKey = completeKey;
+		}
+
+		public void add (StringTreeNode newChild) {
+			_childrenKeys.add (newChild._completeKey);
+			Collections.sort (_childrenKeys);
+			super.insert (newChild, _childrenKeys.indexOf (newChild._completeKey));
+		}
+
+		public void remove (int childIndex) {			
+			super.remove (childIndex);
+			_childrenKeys.remove (childIndex);
+		}
+
+
+		public String getKeyPortion () {
+			return _keyPortion;
+		}
+		public String getCompleteKey () {
+			return _completeKey;
+		}
+		
+		public String toString () {
+			return _keyPortion;
+		}
+	}
+	
+	private class ValuesTableCellRenderer extends SearchRenderer implements TableCellRenderer {
+		
+		public ValuesTableCellRenderer () {
+			super (_matcher, new DefaultTableCellRenderer () {
+				
+				private Font boldFont;
+				private Font getBoldFont (final JLabel label) {
+					if (boldFont == null) {
+						boldFont = label.getFont ().deriveFont (Font.BOLD);
+					}
+					return boldFont;
+				}
+				
+				private Font plainFont;
+				private Font getPlainFont (final JLabel label) {
+					if (boldFont == null) {
+						boldFont = label.getFont ().deriveFont (Font.PLAIN);
+					}
+					return plainFont;
+				}
+				
+				public Component getTableCellRendererComponent(JTable table, Object value,
+					boolean isSelected, boolean hasFocus, int row, int column) {
+
+					final JLabel label = (JLabel)super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+					final int modelColumn = valuesTable.convertColumnIndexToModel (column);
+					if (0 == modelColumn) {
+						// colonna chiavi
+						label.setFont (getBoldFont (label));
+						label.setBackground (keyBackgroundColor);
+						label.setForeground (keyForegroundColor);
+					} else {
+						label.setFont (getPlainFont (label));
+						if (null==value) {
+							label.setBackground (inactiveCaptionColor);
+						} else {
+							label.setBackground (tableBackgroundColor);
+						}
+						label.setForeground (valueForegroundColor);
+					}
+					return label;
+				}
+			});
+		}
+	}
+	
+	private class KeysTableCellRenderer extends SearchRenderer implements TableCellRenderer {
+		
+		public KeysTableCellRenderer () {
+			super (_matcher, new DefaultTableCellRenderer () {
+				
+				
+				private Font boldFont;
+				private Font getBoldFont (final JLabel label) {
+					if (boldFont == null) {
+						boldFont = label.getFont ().deriveFont (Font.BOLD);
+					}
+					return boldFont;
+				}
+				
+				private Font plainFont;
+				private Font getPlainFont (final JLabel label) {
+					if (boldFont == null) {
+						boldFont = label.getFont ().deriveFont (Font.PLAIN);
+					}
+					return plainFont;
+				}
+				
+				
+				
+				public Component getTableCellRendererComponent(JTable table, Object value,
+					boolean isSelected, boolean hasFocus, int row, int column) {
+
+					final JLabel label = (JLabel)super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+					//final int modelColumn = column;
+					//@todo capire perchè non funziona la conrsione di indice... 
+					final int modelColumn = keysTreeTable.convertColumnIndexToModel (column);
+					switch (modelColumn) {
+						case 0: {
+							/*
+							 * colonna albero
+							 */
+							break;
+						}
+						case 1: {
+							// colonna chiavi
+							label.setFont (getBoldFont (label));
+							label.setBackground (keyBackgroundColor);
+							label.setForeground (keyForegroundColor);
+							break;
+						}
+						default: {
+							label.setFont (getPlainFont (label));
+							if (null==value) {
+								label.setBackground (inactiveCaptionColor);
+							} else {
+								label.setBackground (tableBackgroundColor);
+							}
+							label.setForeground (valueForegroundColor);
+						}
+					}
+					return label;
+				}
+			});
+		}
+	}
+	
+	private String getPropertiesName (final File f) {
+		final int idx = f.getName ().lastIndexOf (".properties");
+		if (idx<0) {
+			return f.getName ();
+		} else {
+			return f.getName ().substring (0, idx);
+		}
+	}
+
+	private void enableSearch (JTable t) {
+		t.getInputMap (JComponent.WHEN_IN_FOCUSED_WINDOW).put (KeyStroke.getKeyStroke ("F3"), "findNext");
+		t.getActionMap().put("findNext", _context.getActionManager ().getFindNextAction ());
+		t.getActionMap().put("find", _findAction);		
+	}
 }

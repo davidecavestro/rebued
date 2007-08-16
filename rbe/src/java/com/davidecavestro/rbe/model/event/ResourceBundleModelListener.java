@@ -13,7 +13,7 @@ package com.davidecavestro.rbe.model.event;
  */
 public interface ResourceBundleModelListener extends java.util.EventListener {
     /**
-     * Questa notifica informa i listener che sono cambiati i locale o le entry del ResourceBundleModel..
+     * Questa notifica informa i listener che sono cambiati i locale o le entry del ResourceBundleModel.
      */
     public void resourceBundleChanged (ResourceBundleModelEvent e);
 }

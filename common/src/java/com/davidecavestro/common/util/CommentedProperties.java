@@ -59,7 +59,7 @@ import java.util.Map;
  * @version 1.64, 06/26/00
  * @since   JDK1.0
  */
-public class CommentedProperties extends Hashtable {
+public class CommentedProperties extends Hashtable<String, String> {
     /**
      * use serialVersionUID from JDK 1.1.X for interoperability
      */

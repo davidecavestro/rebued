@@ -32,7 +32,8 @@ import org.jdesktop.swingx.decorator.Sorter;
  */
 public class About extends javax.swing.JDialog {
 	
-	private final static Object[] _voidObjectAray = new Object[0];
+	private final static Object[] _voidObjectArray = new Object[0];
+	private final static String[] _voidStringArray = new String[0];
 		
 	private final ApplicationContext _context;
 	
@@ -413,12 +414,12 @@ public class About extends javax.swing.JDialog {
 
 	private final class SystemPropertiesTableModel implements TableModel {
 
-		private final Object[] keys;
-		private final Object[] values;
+		private final String[] keys;
+		private final String[] values;
 		
 		public SystemPropertiesTableModel (){
-            this.keys = System.getProperties ().keySet ().toArray (_voidObjectAray);
-            this.values = System.getProperties ().values ().toArray (_voidObjectAray);
+            this.keys = System.getProperties ().keySet ().toArray (_voidStringArray);
+            this.values = System.getProperties ().values ().toArray (_voidStringArray);
 		}
 		
 		public void addTableModelListener (javax.swing.event.TableModelListener l) {}
@@ -471,12 +472,12 @@ public class About extends javax.swing.JDialog {
 
 	private final class SystemEnvTableModel implements TableModel {
 
-		private final Map env;
-		private final Object[] keys;
+		private final Map<String,String> env;
+		private final String[] keys;
 		
 		public SystemEnvTableModel (){
 			this.env = System.getenv ();
-            this.keys = env.keySet ().toArray (_voidObjectAray);
+            this.keys = env.keySet ().toArray (_voidStringArray);
 		}
 		
 		public void addTableModelListener (javax.swing.event.TableModelListener l) {}
@@ -569,7 +570,7 @@ public class About extends javax.swing.JDialog {
 				case 1:
 
 					try {
-						return keys[rowIndex].invoke (_context.getApplicationOptions (), _voidObjectAray);
+						return keys[rowIndex].invoke (_context.getApplicationOptions (), _voidObjectArray);
 					} catch (IllegalArgumentException ex) {
 						ex.printStackTrace();
 					} catch (IllegalAccessException ex) {

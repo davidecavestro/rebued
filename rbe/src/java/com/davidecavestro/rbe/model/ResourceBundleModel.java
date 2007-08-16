@@ -28,7 +28,7 @@ public interface ResourceBundleModel extends ResourceBundleModelNotifier {
 	 *
 	 * @return le chiavi del modello.
 	 */	
-	Set getKeySet ();
+	Set<String> getKeySet ();
 	
 	/**
 	 * Ritorna il valore per la chiave ed il locale specificati.

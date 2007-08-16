@@ -30,4 +30,8 @@ public interface HelpResources {
 	/** La barra di stato. */
 	public final static HelpResource STATUS_BAR = new HelpResource ("html.statusbar");
 	
+	/** La finestra di ricerca. */
+	public final static HelpResource FIND_DIALOG = new HelpResource ("html.finddialog");
+	
+	
 }

@@ -41,7 +41,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 	/**
 	 * Mappa Locale->Properties
 	 */
-	private final Map _resourceMap = new HashMap ();
+	private final Map<Locale, LocalizationProperties> _resourceMap = new HashMap<Locale, LocalizationProperties> ();
 	
 	/*
 	 * I campi di cache sono previsti a scopo di incremento delle performance.
@@ -58,11 +58,11 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 	/**
 	 * Cache: set di chiavi (unione delle chiavi per tutti i locale)
 	 */
-	private final Set _keys = new HashSet ();
+	private final Set<String> _keys = new HashSet<String> ();
 	/**
 	 * Cache: Set di Locale
 	 */
-	private final Set _localesSet = new HashSet ();
+	private final Set<Locale> _localesSet = new HashSet<Locale> ();
 	
 	private String _name;
 	
@@ -78,7 +78,6 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
      */
     private java.beans.PropertyChangeSupport changeSupport;
 	
-	
 	private final ApplicationOptions _applicationOptions;
 	private final PropertiesExceptionHandler _peh;
 	
@@ -92,7 +91,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 	 * @param name il nome.
 	 * @param resources le risorse di localizzazione.
 	 */
-	public DefaultResourceBundleModel (ApplicationOptions applicationOptions, PropertiesExceptionHandler peh, String name, LocalizationProperties[] resources) {
+	public DefaultResourceBundleModel (final ApplicationOptions applicationOptions, final PropertiesExceptionHandler peh, final String name, final LocalizationProperties[] resources) {
 		_applicationOptions = applicationOptions;
 		_peh = peh;
 		setName (name);
@@ -100,7 +99,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		
 	}
 
-	public void setName (String name){
+	public void setName (final String name){
 		if (this._name!=name){
 			final String old = this._name;
 			this._name = name;
@@ -120,7 +119,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		//return (LocalizationProperties[])this._resourceMap.values ().toArray (voidResourceArray);
 	}
 	
-	public java.util.Set getKeySet () {
+	public java.util.Set<String> getKeySet () {
 		return this._keys;
 	}
 	
@@ -136,14 +135,14 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		return this._lastClone;
 	}
 
-	private void cacheResources (LocalizationProperties[] resources){
+	private void cacheResources (final LocalizationProperties[] resources){
 		mapResources (resources);
 		cacheLocales (resources);
 		cacheKeys (resources);
 	}
 	
-	private void mapResources (LocalizationProperties[] resources){
-		final Map map = this._resourceMap;
+	private void mapResources (final LocalizationProperties[] resources){
+		final Map<Locale, LocalizationProperties> map = _resourceMap;
 		map.clear ();
 		for (int i = 0; i < resources.length;i++){
 			final LocalizationProperties properties = resources[i];
@@ -152,7 +151,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		
 	}
 	
-	private void cacheLocales (LocalizationProperties[] resources) {
+	private void cacheLocales (final LocalizationProperties[] resources) {
 		final Locale[] locales  = new Locale [resources.length];
 		for (int i = 0 ; i <resources.length;i++){
 			final LocalizationProperties properties = resources[i];
@@ -165,7 +164,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		
 	}
 	
-	private void cacheKeys (LocalizationProperties[] resources) {
+	private void cacheKeys (final LocalizationProperties[] resources) {
 		this._keys.clear ();
 		for (int i = 0 ; i <resources.length;i++){
 			final LocalizationProperties properties = resources[i];
@@ -174,7 +173,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 	}
 	
 	private LocalizationProperties getLocalizationProperties (Locale locale){
-		return (LocalizationProperties)this._resourceMap.get (locale);
+		return _resourceMap.get (locale);
 	}
 	
 	public String getValue (Locale locale, String key) {
@@ -189,7 +188,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		setValue (locale, key, value, true, false);
 	}
 	
-	public void setValue (Locale locale, String key, String value, boolean undoable, boolean undoing) {
+	public void setValue (final Locale locale, final String key, final String value, final boolean undoable, final boolean undoing) {
 		{
 			/* 
 			 * ottimizzazione 
@@ -224,7 +223,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		}
 	}
 
-	private void internalSetValue (Locale locale, String key, String value, boolean undoing) {
+	private void internalSetValue (final Locale locale, final String key, final String value, final boolean undoing) {
 		CommentedProperties props = getLocalizationProperties (locale).getProperties ();
 		if (null==value){
 			props.remove (key);
@@ -256,11 +255,11 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 
 	
 		
-	public void setComment (Locale locale, String key, String comment) {
+	public void setComment (final Locale locale, final String key, final String comment) {
 		setComment (locale, key, comment, true, false);
 	}
 	
-	public void setComment (Locale locale, String key, String comment, boolean undoable, boolean undoing) {
+	public void setComment (final Locale locale, final String key, final String comment, final boolean undoable, final boolean undoing) {
 		final UndoableEditListener[] listeners = (UndoableEditListener[])getListeners (UndoableEditListener.class);
 		if (undoable == false || listeners == null) {
 			internalSetComment (locale, key, comment, undoing);
@@ -283,7 +282,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		}
 	}
 	
-	private void internalSetComment (Locale locale, String key, String comment, boolean undoing) {
+	private void internalSetComment (final Locale locale, final String key, final String comment, final boolean undoing) {
 		CommentedProperties props = getLocalizationProperties (locale).getProperties ();
 		
 		String oldComment = props.getComment (key);
@@ -296,26 +295,26 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		guardModified (undoing);
 	}
 	
-	public void changeKey (String oldKey, String newKey){
+	public void changeKey (final String oldKey, final String newKey){
 		changeKey (oldKey, newKey, true, false);
 	}
 	
-	public void changeKey (String oldKey, String newKey, boolean undoable, boolean undoing){
+	public void changeKey (final String oldKey, final String newKey, final boolean undoable, final boolean undoing){
 		changeKey (oldKey, newKey, undoable, true, undoing);
 	}
 	
-	public void changeKey (String oldKey, String newKey, boolean undoable, boolean fireEvents, boolean undoing){
+	public void changeKey (final String oldKey, final String newKey, final boolean undoable, final boolean fireEvents, final boolean undoing){
 		if (oldKey == newKey || (oldKey!=null && oldKey.equals (newKey))){
 			return;
 		}
 		
 		final UndoableEditListener[] listeners = (UndoableEditListener[])getListeners (UndoableEditListener.class);
 		
-		final List locales = new ArrayList (this.getLocales (oldKey));
-		final List values = new ArrayList ();
-		final List comments = new ArrayList ();
-		for (final Iterator it = locales.iterator (); it.hasNext ();){
-			final Locale l = (Locale)it.next ();
+		final List<Locale> locales = new ArrayList<Locale> (this.getLocales (oldKey));
+		final List<String> values = new ArrayList<String> ();
+		final List<String> comments = new ArrayList<String> ();
+		for (final Iterator<Locale> it = locales.iterator (); it.hasNext ();){
+			final Locale l = it.next ();
 			final String value = this.getValue (l, oldKey);
 			values.add (value);
 			final String comment = this.getComment (l, oldKey);
@@ -549,7 +548,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 		return getName ();
 	}
 	
-	public void load (File file){
+	public void load (final File file){
 		final String fileName = file.getName ();
 		
 		final int idx = fileName.lastIndexOf (".properties");
@@ -604,7 +603,7 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 			}
 		});
 		boolean defaultFound = false;
-		final List retValue = new ArrayList ();
+		final List<LocalizationProperties> retValue = new ArrayList<LocalizationProperties> ();
 		for (int i=0; i<properties.length;i++){
 			final File f = properties[i];
 			try {
@@ -958,8 +957,8 @@ public class DefaultResourceBundleModel extends AbstractResourceBundleModel {
 	 * @param key la chiave.
 	 * @return il set di Locale che contengono la chiave specificata.
 	 */	
-	public Set getLocales (String key){
-		final Set s = new HashSet ();
+	public Set<Locale> getLocales (String key){
+		final Set<Locale> s = new HashSet<Locale> ();
 		for (int i = 0; i< this._resources.length;i++){
 			LocalizationProperties lp = this._resources[i];
 			if (lp.getProperties ().keySet ().contains (key)){

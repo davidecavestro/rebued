@@ -35,7 +35,7 @@ import java.lang.reflect.Method;
 
  * would do it.
  
- * Copyright © Elliott Hughes, 2004-2007.
+ * Copyright  Elliott Hughes, 2004-2007.
 
  */
 public class HungAwtExit {

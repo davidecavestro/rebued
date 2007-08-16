@@ -19,12 +19,12 @@ public interface ResourceBundleModelNotifier {
      *
      * @param	l		il ResourceBundleModelListener.
      */
-    public void addResourceBundleModelListener (ResourceBundleModelListener l);
+    void addResourceBundleModelListener (ResourceBundleModelListener l);
 
     /**
      * Rimuove il listener dal registro degli interessati alla notifica della modifica del modello dati.
      *
      * @param	l		il ResourceBundleModelListener.
      */
-    public void removeResourceBundleModelListener(ResourceBundleModelListener l);
+    void removeResourceBundleModelListener(ResourceBundleModelListener l);
 }

@@ -126,7 +126,7 @@ public class WindowManager implements ActionListener, DialogListener {
 	 */
 	public FindDialog getFindDialog (){
 		if (this._findDialog==null){
-			this._findDialog = new FindDialog (getMainWindow (), true, _context.getActionManager ().getFindNextAction ());
+			this._findDialog = new FindDialog (_context, getMainWindow (), true, _context.getActionManager ().getFindNextAction ());
 		}
 		return this._findDialog;
 	}

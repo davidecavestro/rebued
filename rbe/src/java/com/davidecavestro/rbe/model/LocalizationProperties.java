@@ -30,7 +30,7 @@ public class LocalizationProperties {
 	 * @param locale il locale.
 	 * @param props le proeprties;
 	 */
-	public LocalizationProperties (Locale locale, CommentedProperties props) {
+	public LocalizationProperties (final Locale locale, final CommentedProperties props) {
 		this.locale = locale;
 		this.properties = props;
 	}
@@ -61,7 +61,7 @@ public class LocalizationProperties {
 	 * @throws FileNotFoundException nel caso di problemi di accesso al file.
 	 * @throws IOException nel caso qualcosa vada male durante il salvataggio.
 	 */	
-	public void store (File file, String header) throws FileNotFoundException, IOException{
+	public void store (final File file, final String header) throws FileNotFoundException, IOException{
 		this.properties.store (new FileOutputStream (file), header);
 	}
 	
