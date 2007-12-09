@@ -128,7 +128,7 @@ public class HungAwtExit {
 			
 		} catch (Exception ex) {
 			
-			ex.printStackTrace ();
+			ex.printStackTrace (System.err);
 			
 		}
 		
