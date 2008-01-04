@@ -36,4 +36,17 @@ public class ArrayUtils {
 			}
 		}
 	}
+	
+	/**
+	 * Stampa una riga per ogni elemento dell'array.
+	 *
+	 * @param a l'array da stampare.
+	 * @param ps lo stream di stampa.
+	 */	
+	public static <T> void printlnArray (PrintStream ps, T[] a){
+		for (int i = 0;i<a.length;i++){
+			ps.println (a[i]);
+		}
+	}
+	
 }

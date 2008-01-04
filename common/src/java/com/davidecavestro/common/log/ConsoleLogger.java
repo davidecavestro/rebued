@@ -68,7 +68,7 @@ public class ConsoleLogger implements Logger{
 	 * Registra un messaggio di DEBUG.
 	 * @param message il messaggio.
 	 */
-	public void debug (final String message) {
+	public void debug (final String... message) {
 		printMessage (MessageType.DEBUG, message);
 	}
 	
@@ -77,7 +77,7 @@ public class ConsoleLogger implements Logger{
 	 * @param message il messaggio.
 	 * @param t l'evento.
 	 */
-	public void debug (final String message, final Throwable t) {
+	public void debug (final Throwable t, final String... message) {
 		printMessage (MessageType.DEBUG, message);
 	}
 	
@@ -85,7 +85,7 @@ public class ConsoleLogger implements Logger{
 	 * Registra un messaggio di ERRORE.
 	 * @param message il messaggio.
 	 */
-	public void error (final String message) {
+	public void error (final String... message) {
 		printMessage (MessageType.ERROR, message);
 	}
 	
@@ -94,15 +94,15 @@ public class ConsoleLogger implements Logger{
 	 * @param message il messaggio.
 	 * @param t l'evento.
 	 */
-	public void error (final String message, final Throwable t) {
-		printMessage (MessageType.ERROR, message, t);
+	public void error (final Throwable t, final String... message) {
+		printMessage (MessageType.ERROR, t, message);
 	}
 	
 	/**
 	 * Registra un messaggio di INFORMAZIONE.
 	 * @param message il messaggio.
 	 */
-	public void info (final String message) {
+	public void info (final String... message) {
 		printMessage (MessageType.INFO, message);
 	}
 	
@@ -110,7 +110,7 @@ public class ConsoleLogger implements Logger{
 	 * Registra un messaggio di AVVISO.
 	 * @param message il messaggio.
 	 */
-	public void warning (final String message) {
+	public void warning (final String... message) {
 		printMessage (MessageType.WARNING, message);
 	}
 	
@@ -119,7 +119,7 @@ public class ConsoleLogger implements Logger{
 	 * @param message il messaggio.
 	 * @param t l'evento.
 	 */
-	public void warning (final String message, final Throwable t) {
+	public void warning (final Throwable t, final String... message) {
 		printMessage (MessageType.WARNING, message);
 	}
 	
@@ -129,8 +129,8 @@ public class ConsoleLogger implements Logger{
 	 * @param type il tipo di registrazione.
 	 * @param message il messaggio da registrare.
 	 */	
-	private final void printMessage (final MessageType type, final String message){
-		printMessage (type, message, null);
+	private final void printMessage (final MessageType type, final String... message){
+		printMessage (type, null, message);
 	}
 	
 	/**
@@ -141,8 +141,7 @@ public class ConsoleLogger implements Logger{
 	 * @param message il messaggio da registrare.
 	 * @param t l'evento associato (opzionale).
 	 */	
-	private final void printMessage (final MessageType type, final String message, final Throwable t){
-		
+	private final void printMessage (final MessageType type, final Throwable t, final String... message){
 		addParagraph (new Paragraph ("normal", 
 			new Run []{
 				new Run ("messagetype", type.getType ()+"\t"),
@@ -315,7 +314,9 @@ public class ConsoleLogger implements Logger{
 			for (int i = 0; i < p.data.length; i++) {
 				Run run = p.data[i];
 				s = (Style) runAttr.get (run.attr);
-				_document.insertString (_document.getLength (), run.content, s);
+				for (final String content : run.content) {
+					_document.insertString (_document.getLength (), content, s);
+				}
 			}
 			
 			// set logical style
@@ -337,12 +338,12 @@ public class ConsoleLogger implements Logger{
 	}
 	
 	static class Run {
-		Run (String attr, String content) {
+		Run (String attr, String... content) {
 			this.attr = attr;
 			this.content = content;
 		}
 		String attr;
-		String content;
+		String[] content;
 	}
 	
 	public Document getDocument (){

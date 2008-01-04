@@ -20,25 +20,25 @@ public class LoggerAdapter implements Logger {
 	public void close () {
 	}
 	
-	public void debug (String message) {
+	public void debug (final String... message) {
 	}
 	
-	public void debug (String message, Throwable t) {
+	public void debug (final Throwable t, final String... message) {
 	}
 	
-	public void error (String message) {
+	public void error (final String... message) {
 	}
 	
-	public void error (String message, Throwable t) {
+	public void error (final Throwable t, final String... message) {
 	}
 	
-	public void info (String message) {
+	public void info (final String... message) {
 	}
 	
-	public void warning (String message) {
+	public void warning (final String... message) {
 	}
 	
-	public void warning (String message, Throwable t) {
+	public void warning (final Throwable t, final String... message) {
 	}
 	
 }

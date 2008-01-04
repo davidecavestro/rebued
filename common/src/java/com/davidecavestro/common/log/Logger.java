@@ -17,40 +17,40 @@ public interface Logger {
 	 * Registra un messaggio di DEBUG.
 	 * @param message il messaggio.
 	 */
-	public void debug (final String message);
+	public void debug (String... message);
 	/**
 	 * Registra un messaggio di DEBUG associatoall'eventospecificato.
 	 * @param t l'evento.
 	 * @param message il messaggio.
 	 */
-	public void debug (final String message, Throwable t);
+	public void debug (Throwable t, String... message);
 	/**
 	 * Registra un messaggio di INFORMAZIONE.
 	 * @param message il messaggio.
 	 */
-	public void info (final String message);
+	public void info (String... message);
 	/**
 	 * Registra un messaggio di AVVISO.
 	 * @param message il messaggio.
 	 */
-	public void warning (final String message);
+	public void warning (String... message);
 	/**
 	 * Registra un messaggio di AVVISO associato ad un evento specificato.
 	 * @param message il messaggio.
 	 * @param t l'evento.
 	 */
-	public void warning (final String message, final Throwable t);
+	public void warning (Throwable t, String... message);
 	/**
 	 * Registra un messaggio di ERRORE.
 	 * @param message il messaggio.
 	 */
-	public void error (final String message);
+	public void error (String... message);
 	/**
 	 * Registra un messaggio di ERRORE associato ad un evento specificato.
 	 * @param message il messaggio.
 	 * @param t l'evento.
 	 */
-	public void error (final String message, final Throwable t);
+	public void error (Throwable t, String... message);
 	
 	/**
 	 * Chiude gli stream aperti.

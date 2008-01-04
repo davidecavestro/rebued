@@ -47,12 +47,12 @@ public final class CompositeLogger implements Logger{
 	 * Registra un messaggio di DEBUG.
 	 * @param message il messaggio.
 	 */
-	public void debug (final String message) {
+	public void debug (final String... message) {
 		debug (this._actualLogger, message);
 		debug (this._successor, message);
 	}
 	
-	private void debug (final Logger logger, final String message) {
+	private void debug (final Logger logger, final String... message) {
 		if (logger!=null){
 			logger.debug (message);
 		}
@@ -62,12 +62,12 @@ public final class CompositeLogger implements Logger{
 	 * Registra un messaggio di ERRORE.
 	 * @param message il messaggio.
 	 */
-	public void error (final String message) {
+	public void error (final String... message) {
 		error (this._actualLogger, message);
 		error (this._successor, message);
 	}
 	
-	private void error (final Logger logger, final String message) {
+	private void error (final Logger logger, final String... message) {
 		if (logger!=null){
 			logger.error (message);
 		}
@@ -78,14 +78,14 @@ public final class CompositeLogger implements Logger{
 	 * @param message il messaggio.
 	 * @param t l'evento.
 	 */
-	public void error (final String message, final Throwable t) {
-		error (this._actualLogger, message, t);
-		error (this._successor, message, t);
+	public void error (final Throwable t, final String... message) {
+		error (this._actualLogger, t, message);
+		error (this._successor, t, message);
 	}
 	
-	private void error (final Logger logger, final String message, final Throwable t) {
+	private void error (final Logger logger, final Throwable t, final String... message) {
 		if (logger!=null){
-			logger.error (message, t);
+			logger.error (t, message);
 		}
 	}
 	
@@ -93,12 +93,12 @@ public final class CompositeLogger implements Logger{
 	 * Registra un messaggio di INFORMAZIONE.
 	 * @param message il messaggio.
 	 */
-	public void info (final String message) {
+	public void info (final String... message) {
 		info (this._actualLogger, message);
 		info (this._successor, message);
 	}
 	
-	private void info (final Logger logger, final String message) {
+	private void info (final Logger logger, final String... message) {
 		if (logger!=null){
 			logger.info (message);
 		}
@@ -108,12 +108,12 @@ public final class CompositeLogger implements Logger{
 	 * Registra un messaggio di AVVISO.
 	 * @param message il messaggio.
 	 */
-	public void warning (final String message) {
+	public void warning (final String... message) {
 		warning (this._actualLogger, message);
 		warning (this._successor, message);
 	}
 	
-	private void warning (final Logger logger, final String message) {
+	private void warning (final Logger logger, final String... message) {
 		if (logger!=null){
 			logger.warning (message);
 		}
@@ -124,14 +124,14 @@ public final class CompositeLogger implements Logger{
 	 * @param message il messaggio.
 	 * @param t l'evento.
 	 */
-	public void warning (final String message, final Throwable t) {
-		warning (this._actualLogger, message,t);
-		warning (this._successor, message, t);
+	public void warning (final Throwable t, final String... message) {
+		warning (this._actualLogger, t, message);
+		warning (this._successor, t, message);
 	}
 	
-	private void warning (final Logger logger, final String message, final Throwable t) {
+	private void warning (final Logger logger, final Throwable t, final String... message) {
 		if (logger!=null){
-			logger.warning (message, t);
+			logger.warning (t, message);
 		}
 	}
 	
@@ -146,14 +146,14 @@ public final class CompositeLogger implements Logger{
 		}
 	}
 	
-	public void debug (String message, Throwable t) {
-		debug (this._actualLogger, message, t);
-		debug (this._successor, message, t);
+	public void debug (final Throwable t, final String... message) {
+		debug (this._actualLogger, t, message);
+		debug (this._successor, t, message);
 	}
 	
-	private void debug (final Logger logger, final String message, final Throwable t) {
+	private void debug (final Logger logger, final Throwable t, final String... message) {
 		if (logger!=null){
-			logger.debug (message, t);
+			logger.debug (t, message);
 		}
 	}
 	
