@@ -235,7 +235,7 @@ public class Application {
 	public final void exit (){
 		beforeExit ();
 		_context.getWindowManager ().disposeAllFrames ();
-		HungAwtExit.explain (_context.getWindowManager ().getMainWindow ());
+		HungAwtExit.forceOtherFramesDispose (_context.getWindowManager ().getMainWindow ());
 		System.out.println ("Closing application...");
 	}
 	
