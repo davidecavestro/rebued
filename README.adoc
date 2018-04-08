@@ -57,7 +57,7 @@ the generated archives are located into the `build/distributions` subfolder
 
 # History
 
-It was 2006-2007 when I developed at home this application to use it at work.
+It was 2006-2007 when I developed this application to help editing resource bundles.
 The tool was named _URBE_, it remained unpublished and I forgot about it until
 I moved my old cvs contents to git.
 
