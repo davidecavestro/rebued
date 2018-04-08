@@ -1,0 +1,98 @@
+plugins {
+  id "application"
+  id 'build-dashboard'
+}
+
+repositories{
+  mavenCentral()
+  maven { url= 'http://bits.netbeans.org/maven2/' }
+  flatDir {
+    dirs 'libs'
+  }
+}
+
+dependencies {
+  compile 'com.jgoodies:looks:2.1.4'
+  compile 'org.netbeans.external:AbsoluteLayout:RELEASE802'
+  compile 'org.netbeans.api:org-openide-awt:RELEASE802'
+  compile 'org.netbeans.api:org-openide-util:RELEASE802'
+//  compile 'org.swinglabs:swingx:0.9.7'
+  compile 'org.swinglabs:swingx:2006_10_27'
+
+  compile 'javax.help:javahelp:2.0.05'
+
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+group = 'com.davidecavestro.rbe'
+version = '1.0.0-SNAPSHOT'
+
+mainClassName = 'com.davidecavestro.rbe.Launcher'
+
+def generatedResources = "$buildDir/generated-resources/main"
+
+sourceSets {
+  main {
+    //register an output folder on the main SourceSet:
+    output.dir(generatedResources, builtBy: 'generateVersionTxt')
+    //it is now a part of the 'main' classpath and will be a part of the jar
+    
+    java{
+      srcDirs 'src/main/java'
+      srcDirs 'src/common/java'
+    }
+    resources {
+      srcDirs 'src/main/java'
+    }
+  }
+}
+
+def props = System.properties
+
+def vnums = ((String)project.version).split ('\\.')
+println "project.version ${project.version}"
+println "vnums ${vnums}"
+
+def rel_version_major=vnums[0]
+def rel_version_minor=vnums[1]
+def rel_version_suffix=vnums[2]
+def rel_internal_name='rbe'
+def rel_external_name='rbe'
+def rel_date=new java.text.SimpleDateFormat('yyyy-MM-dd').format(new Date())
+def rel_notes="Built with Java(TM) ${props['java.vm.version']} (${props['java.vm.vendor']}) by ${props['user.name']} on ${props['os.name']} ${props['os.arch']} ${props['os.version']}"
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+processResources {
+  with copySpec {
+    from 'src/template/resources'
+    filter(ReplaceTokens, tokens: [
+        '{major.version.number}': rel_version_major,
+        '{minor.version.number}': rel_version_minor,
+        '{version.suffix}': rel_version_suffix,
+        '{internal.name}': rel_internal_name,
+        '{external.name}': rel_external_name,
+        '{release.date}': rel_date,
+        '{build.date}': rel_date,
+        '{release.date}': rel_date,
+        '{build.notes}': rel_notes
+    ])
+  }
+}
+
+
+//a task that generates the resources:
+task generateVersionTxt {
+  description 'Creates a version.txt file with build info that is added to the root of the jar'
+  doLast {
+    new File(generatedResources).mkdirs()
+    def generated = new File(generatedResources, "version.txt")
+    generated.text = """
+        Version: $rootProject.version
+        Buildtime: ${new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())}
+        Application-name: $rootProject.name $project.name
+        """
+  }
+}

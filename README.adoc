@@ -1,0 +1,65 @@
+= REBUED
+Davide Cavestro <https://github.com/davidecavestro[@davidecavestro]>
+// Settings:
+:idprefix:
+:idseparator: -
+ifndef::env-github[:icons: font]
+ifdef::env-github,env-browser[]
+:toc: macro
+:toclevels: 1
+endif::[]
+ifdef::env-github[]
+:branch: master
+:status:
+:outfilesuffix: .adoc
+:!toc-title:
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+// URIs:
+:uri-repo: https://github.com/davidecavestro/rebued
+:uri-issues: {uri-repo}/issues
+:uri-search-issues: {uri-repo}/search?type=Issues
+:uri-ci-travis: https://travis-ci.org/davidecavestro/rebued
+ifdef::status[]
+image:https://img.shields.io/github/license/davidecavestro/rebued.svg[Apache License 2.0, link=#copyright-and-license]
+image:https://img.shields.io/travis/davidecavestro/rebued/master.svg[Build Status (Travis CI), link={uri-ci-travis}]
+image:https://img.shields.io/github/commit-activity/y/davidecavestro/rebued.svg[GitHub commit activity]
+image:https://img.shields.io/github/languages/code-size/badges/shields.svg[GitHub code size in bytes]
+
+
+image:https://img.shields.io/github/release/davidecavestro/rebued.svg[GitHub release]
+image:https://img.shields.io/github/commits-since/davidecavestro/rebued/latest.svg[Github commits (since latest release)]
+
+endif::[]
+
+A java REsource BUndle EDitor.
+
+toc::[]
+
+:imagesdir: docs/images
+:icons: font
+
+REBUED is a swing based editor for Java resource bundles.
+
+
+# How to build
+
+```
+./gradlew build
+```
+
+the generated archives are located into the `build/distributions` subfolder
+
+
+# History
+
+It was 2006-2007 when I developed at home this application to use it at work.
+The tool was named _URBE_, it remained unpublished and I forgot about it until
+I moved my old cvs contents to git.
+
+So I decided to publish it as it was, simply switching the build system from
+netbeans ant config to gradle.
