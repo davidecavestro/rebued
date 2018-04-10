@@ -55,7 +55,13 @@ REBUED is a swing based editor for Java resource bundles.
 the generated archives are located into the `build/distributions` subfolder
 
 
-# History
+# Project status
+
+When porting to git I've limited the changes to the minimum to make it build with gradle.
+I don't plan additional features/fixes unless there's some request (see project history).
+
+
+# Project history
 
 It was 2006-2007 when I developed this application to help editing resource bundles.
 The tool was named _URBE_, it remained unpublished and I forgot about it until
@@ -63,3 +69,4 @@ I moved my old cvs contents to git.
 
 So I decided to publish it as it was, simply switching the build system from
 netbeans ant config to gradle.
+
