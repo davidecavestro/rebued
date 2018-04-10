@@ -58,7 +58,9 @@ the generated archives are located into the `build/distributions` subfolder
 # Project status
 
 When porting to git I've limited the changes to the minimum to make it build with gradle.
-I don't plan additional features/fixes unless there's some request (see project history).
+It misses some release automation, maybe I'll work at it.
+Anyway I don't plan additional features/fixes (unless there's some request... 
+see project history).
 
 
 # Project history
