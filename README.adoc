@@ -43,7 +43,10 @@ toc::[]
 :imagesdir: docs/images
 :icons: font
 
-REBUED is a swing based editor for Java resource bundles.
+REBUED is a standalone editor for Java resource bundles.
+
+
+image::rbe_classic_screenshot.png[resource bundle editor]
 
 
 # How to build
